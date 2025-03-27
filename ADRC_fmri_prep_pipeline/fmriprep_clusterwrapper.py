@@ -18,31 +18,52 @@ import os , glob
 import sys
 #import nibabel as nib
 
+
+# Make sure important paths exist and are set:
 try :
     BD = os.environ['BIGGUS_DISKUS']
 #os.environ['GIT_PAGER']
 except KeyError:  
     print('BD not found locally')
-    BD = '***/mouse'    
+    BD = '***/human'    
     #BD ='***/example'
 else:
     print("BD is found locally.")
+    BD=os.path.abspath(f"{BD}/../human/")
+    
+try :
+    GD = os.environ['GUNNIES']   
+
+except KeyError:  
+    print('GUNNIES not found locally')   
+    GD = '/mnt/clustertmp/common/rja20_dev/gunnies/'
+else:
+    print("BD is found locally.")
+
+
+
+current_file_path = os.path.abspath(__file__)
+code_folder = os.path.dirname(current_file_path)
+    
+# Make this code reusable for other projects    
+project = "ADNI"
+
 #create sbatch folder
 job_descrp =  "fmri_coreg"
-sbatch_folder_path = "/mnt/munin2/Badea/Lab/human/ADRC/fmri_pipeline_batch/"+job_descrp + '_sbatch/'
+sbatch_folder_path = f"{BD}/{project}_prep/"+job_descrp + '_sbatch/'
 
 if not os.path.exists(sbatch_folder_path):
     os.system(f"mkdir -p {sbatch_folder_path}" )
-    #os.makedirs(sbatch_folder_path)
-GD = '/mnt/clustertmp/common/rja20_dev/gunnies/'
 
-data_path = '/mnt/munin2/Badea/Lab/human/ADRC/ADRC_BIDS'
+
+
+data_path = f"{BD}/{project}/{project}_BIDS'
 
 checker=True
-outpathfolder = '/mnt/munin2/Badea/Lab/human/ADRC/fmriprep_output'
+outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
 
 list_folders_path = os.listdir(data_path)
-list_of_subjs_long = [i for i in list_folders_path if 'ADRC' in i and not '.' in i]
+list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' in i]
 subjects = sorted(list_of_subjs_long)
 list_of_subjs = [i.replace('sub-','') for i in list_of_subjs_long]
 #list_of_subjs = ['ADRC0001']
@@ -56,9 +77,12 @@ for subj in list_of_subjs:
         if os.path.exists(output_file_name):
             #print(f'Already did subject {subj}')
             continue
-    python_command = "python3 /mnt/munin2/Badea/Lab/human/ADRC/ADRC_fmri_prep_pipeline/fmri_prep.py "+subj
+    python_command = "python3 " + code_folder "/fmri_prep.py "+subj
     job_name = job_descrp + "_"+ subj
+    
+    # If the gunnies folder is up to date, either the sge or slurm submit script can be used,
+    # regardless of which cluster you be on.
     command = GD + "submit_sge_cluster_job.bash " + sbatch_folder_path + " "+ job_name + " 0 0 '"+ python_command+"'"   
-    #os.system(command)
+    os.system(command)
     print(f'Launched subject {subj}')
     #os.system(python_command)
