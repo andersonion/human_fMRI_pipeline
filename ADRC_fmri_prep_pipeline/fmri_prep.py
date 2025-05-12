@@ -67,7 +67,7 @@ command = f' {fmri_command} {output_BIDS} {fmriprep_output} ' \
     f'participant --participant-label {subj} -w {work_dir} --nthreads 20 ' \
     f'--output-spaces T1w'
 os.system(command)
-#print(command)
+print(command)
 try:
     work_subj_dir = os.path.join(glob.glob(os.path.join(work_dir,'fmriprep*'))[0],f'*{subj}')
 except IndexError:
