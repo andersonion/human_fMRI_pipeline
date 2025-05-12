@@ -60,6 +60,9 @@ fmriprep_output = os.path.join(root_proj,'fmriprep_output')
 
 work_dir = os.path.join(root_proj,'work_dir')
 
+print(f'output_BIDS = {output_BIDS} ')
+print(f'fmriprep_output = {fmriprep_output} ')
+
 command = f' {fmri_command} {output_BIDS} {fmriprep_output} ' \
     f'participant --participant-label {subj} -w {work_dir} --nthreads 20 ' \
     f'--output-spaces T1w'
