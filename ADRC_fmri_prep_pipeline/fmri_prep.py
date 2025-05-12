@@ -36,19 +36,19 @@ root = os.path.dirname(BD)
 #root = '/mnt/munin2/Badea/Lab/'
 root_proj = f'{BD}/{project}/'
 
-print("root_proj = f'rootproj' ")
+print("root_proj = f'{rootproj}' ")
 
 if os.path.exists(root_proj):
 	pass
 else:
-	raise FileNotFoundError(f'root_proj (value: {root_proj} ) is either not set or does not exist.'):
+	raise FileNotFoundError(f'root_proj (value: {root_proj} ) is either not set or does not exist.')
 
 
 SID=os.environ['SINGULARITY_IMAGE_DIR'];
 if os.path.exists(SID):
 	pass
 else:
-	raise FileNotFoundError(f'SINGULARITY_IMAGE_DIR (value: {SID} ) is either not set or does not exist.'):
+	raise FileNotFoundError(f'SINGULARITY_IMAGE_DIR (value: {SID} ) is either not set or does not exist.')
 	
 fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.sif fmriprep'
 
