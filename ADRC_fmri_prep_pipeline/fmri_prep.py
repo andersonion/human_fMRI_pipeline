@@ -36,6 +36,8 @@ root = os.path.dirname(BD)
 #root = '/mnt/munin2/Badea/Lab/'
 root_proj = f'{BD}/{project}/'
 
+print("root_proj = f'rootproj' ")
+
 if os.path.exists(root_proj):
 	pass
 else:
