@@ -55,7 +55,7 @@ else:
 fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.simg fmriprep'
 
 subj = (sys.argv[1])
-output_BIDS = os.path.join(root_proj,f"{project}_BIDS")
+output_BIDS = os.path.join(root_proj,f"{project}_BIDS/")
 fmriprep_output = os.path.join(root_proj,'fmriprep_output')
 
 work_dir = os.path.join(root_proj,'work_dir')
