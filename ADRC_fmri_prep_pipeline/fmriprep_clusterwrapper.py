@@ -38,7 +38,7 @@ except KeyError:
     print('GUNNIES not found locally')   
     GD = '/mnt/clustertmp/common/rja20_dev/gunnies/'
 else:
-    print("BD is found locally.")
+    print("GUNNIES is found locally.")
 
 
 

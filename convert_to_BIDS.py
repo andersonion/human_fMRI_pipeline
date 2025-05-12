@@ -1,6 +1,18 @@
+# Originally written by Jacques Stout for converting ARDC subjects to BIDS format.
+# Adapted for more general use on 27 March 2025 (Thursday), by Robert "BJ" Anderson/
 
-import json, os, shutil
+# First argument is the original path of the input data.
+# Second argument is the output path.
+
+import json, os, shutil, sys
 import SimpleITK as sitk
+
+orig_path = sys.argv[1]
+output_path = sys.argv[2]
+
+#orig_path = '/Volumes/Data/Badea/Lab/ADRC-20230511/'
+#output_path = '/Users/jas/jacques/ADRC/ADRC_Dataset/'
+
 #from DTC.file_manager.file_tools import buildlink, mkcdir, getfromfile
 
 def mkcdir(folderpaths, sftp=None):
@@ -27,10 +39,10 @@ def mkcdir(folderpaths, sftp=None):
                 except:
                     sftp.mkdir(folderpath)
 
+# Is this a test subject for debugging?
 subj = 'ADRC0001'
 
-orig_path = '/Volumes/Data/Badea/Lab/ADRC-20230511/'
-output_path = '/Users/jas/jacques/ADRC/ADRC_Dataset/'
+
 
 subj_folder = os.path.join(output_path,f'sub-{subj}')
 anat_folder = os.path.join(output_path,f'sub-{subj}/anat')
