@@ -3,12 +3,14 @@
 
 # First argument is the original path of the input data.
 # Second argument is the output path.
+# There is some code that will need to be modified for your specific data structure
 
 import json, os, shutil, sys
 import SimpleITK as sitk
 
 orig_path = sys.argv[1]
 output_path = sys.argv[2]
+subj = sys.argv[3]
 
 #orig_path = '/Volumes/Data/Badea/Lab/ADRC-20230511/'
 #output_path = '/Users/jas/jacques/ADRC/ADRC_Dataset/'
@@ -40,7 +42,7 @@ def mkcdir(folderpaths, sftp=None):
                     sftp.mkdir(folderpath)
 
 # Is this a test subject for debugging?
-subj = 'ADRC0001'
+#subj = 'ADRC0001'
 
 
 
@@ -50,7 +52,8 @@ func_folder = os.path.join(output_path,f'sub-{subj}/func')
 
 mkcdir([subj_folder,anat_folder,func_folder],None)
 
-t1_path_orig = os.path.join(orig_path,subj,'visit1/T1.nii.gz')  # change this with your file
+# Hey you! Change this as needed for your data.
+t1_path_orig = os.path.join(orig_path,f'{subj}_T1.nii.gz')  # change this with your file
 
 t1_nii_path = os.path.join(anat_folder,f'sub-{subj}_T1w.nii.gz')
 t1_json_path = os.path.join(anat_folder,f'sub-{subj}_T1w.json')
@@ -69,7 +72,7 @@ if not os.path.exists(t1_json_path):
         json.dump(header, outfile, indent=4)
 
 
-func_path_orig = os.path.join(orig_path,subj,'visit1/resting_state.nii.gz')  # change this with your file
+func_path_orig = os.path.join(orig_path,f'{subj}_fMRI.nii.gz')  # change this with your file
 
 func_nii_path = os.path.join(func_folder,f'sub-{subj}_task-restingstate_run-01_bold.nii.gz')
 func_json_path = os.path.join(func_folder,f'sub-{subj}_task-restingstate_run-01_bold.json')
