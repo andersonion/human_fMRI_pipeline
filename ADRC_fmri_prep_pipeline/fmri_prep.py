@@ -49,10 +49,15 @@ if os.path.exists(SID):
 	pass
 else:
 	raise FileNotFoundError(f'SINGULARITY_IMAGE_DIR (value: {SID} ) is either not set or does not exist.')
-	
+
+# Command used on BIAC cluster
 #fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.sif fmriprep'
 
-fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.simg fmriprep'
+# First installation on QIAL cluster, not used as of yet
+#fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.simg fmriprep'
+
+# Upgraded version on QIAL cluster
+fmri_command = f'singularity exec {SID}/fmriprep-v25.0.0.sif'
 
 subj = (sys.argv[1])
 output_BIDS = os.path.join(root_proj,f"{project}_BIDS/")
