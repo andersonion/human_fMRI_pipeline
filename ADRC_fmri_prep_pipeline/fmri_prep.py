@@ -56,8 +56,10 @@ else:
 # First installation on QIAL cluster, not used as of yet
 #fmri_command = f'singularity exec {SID}/fmriprep-v23.0.1.simg fmriprep'
 
-# Upgraded version on QIAL cluster
-fmri_command = f'singularity exec {SID}/fmriprep-v25.0.0.sif'
+# Upgraded version on QIAL cluster singularity run --bind /mnt/newStor:/mnt/newStor fmriprep.simg ...
+#singularity run --bind /mnt/newStor:/mnt/newStor fmriprep.simg ...
+
+fmri_command = f'singularity exec --bind /mnt/newStor:/mnt/newStor {SID}/fmriprep-v25.0.0.sif'
 
 subj = (sys.argv[1])
 output_BIDS = os.path.join(root_proj,f"{project}_BIDS/")
