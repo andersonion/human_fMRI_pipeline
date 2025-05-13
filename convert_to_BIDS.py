@@ -72,7 +72,7 @@ if not os.path.exists(t1_json_path):
         json.dump(header, outfile, indent=4)
 
 
-func_path_orig = os.path.join(orig_path,f'{subj}_fMRI.nii.gz')  # change this with your file
+func_path_orig = os.path.join(orig_path,f'{subj}_fMRI_nii4D.nii.gz')  # change this with your file
 
 func_nii_path = os.path.join(func_folder,f'sub-{subj}_task-restingstate_run-01_bold.nii.gz')
 func_json_path = os.path.join(func_folder,f'sub-{subj}_task-restingstate_run-01_bold.json')
