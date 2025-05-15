@@ -47,6 +47,10 @@ def mkcdir(folderpaths, sftp=None):
 if subj[0].isdigit():
 	subj = 'S' + subj
 
+o_subj = subj
+subj.remove('_')
+
+
 subj_folder = os.path.join(output_path,f'sub-{subj}')
 anat_folder = os.path.join(output_path,f'sub-{subj}/anat')
 func_folder = os.path.join(output_path,f'sub-{subj}/func')
@@ -54,7 +58,7 @@ func_folder = os.path.join(output_path,f'sub-{subj}/func')
 mkcdir([subj_folder,anat_folder,func_folder],None)
 
 # Hey you! Change this as needed for your data.
-t1_path_orig = os.path.join(orig_path,f'{subj}_T1.nii.gz')  # change this with your file
+t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with your file
 
 
 # BIDS standards -- Do not change
@@ -76,7 +80,7 @@ if not os.path.exists(t1_json_path):
         json.dump(header, outfile, indent=4)
 
 
-func_path_orig = os.path.join(orig_path,f'{subj}_fMRI_nii4D.nii.gz')  # change this with your file
+func_path_orig = os.path.join(orig_path,f'{o_subj}_fMRI_nii4D.nii.gz')  # change this with your file
 
 
 # BIDS standards -- Do not change
