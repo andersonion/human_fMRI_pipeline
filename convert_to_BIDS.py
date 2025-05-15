@@ -47,17 +47,19 @@ def mkcdir(folderpaths, sftp=None):
 if subj[0].isdigit():
 	subj = 'S' + subj
 
-subj_folder = os.path.join(output_path,f'{subj}')
-anat_folder = os.path.join(output_path,f'{subj}/anat')
-func_folder = os.path.join(output_path,f'{subj}/func')
+subj_folder = os.path.join(output_path,f'sub-{subj}')
+anat_folder = os.path.join(output_path,f'sub-{subj}/anat')
+func_folder = os.path.join(output_path,f'sub-{subj}/func')
 
 mkcdir([subj_folder,anat_folder,func_folder],None)
 
 # Hey you! Change this as needed for your data.
 t1_path_orig = os.path.join(orig_path,f'{subj}_T1.nii.gz')  # change this with your file
 
-t1_nii_path = os.path.join(anat_folder,f'{subj}_T1w.nii.gz')
-t1_json_path = os.path.join(anat_folder,f'{subj}_T1w.json')
+
+# BIDS standards -- Do not change
+t1_nii_path = os.path.join(anat_folder,f'sub-{subj}_T1w.nii.gz')
+t1_json_path = t1_nii_path.replace(".nii.gz", ".json")
 
 if not os.path.exists(t1_nii_path):
     shutil.copy(t1_path_orig,t1_nii_path)
@@ -75,8 +77,11 @@ if not os.path.exists(t1_json_path):
 
 func_path_orig = os.path.join(orig_path,f'{subj}_fMRI_nii4D.nii.gz')  # change this with your file
 
-func_nii_path = os.path.join(func_folder,f'{subj}_fMRI.nii.gz')
-func_json_path = os.path.join(func_folder,f'{subj}_fMRI.json')
+
+# BIDS standards -- Do not change
+func_nii_path = os.path.join(func_folder,f'sub-{subj}_task-rest_bold.nii.gz')
+func_json_path = func_nii_path.replace(".nii.gz", ".json")
+
 
 if not os.path.exists(func_nii_path):
     shutil.copy(func_path_orig,func_nii_path)
