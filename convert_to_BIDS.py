@@ -71,6 +71,7 @@ if not os.path.exists(t1_json_path):
 
     # get metadata dict
     header = {k: itk_image.GetMetaData(k) for k in itk_image.GetMetaDataKeys()}
+    header["datatype"] = 'anat'
     with open(t1_json_path, "w") as outfile:
         json.dump(header, outfile, indent=4)
 
@@ -93,6 +94,7 @@ if not os.path.exists(func_json_path):
 
     # get metadata dict
     header = {k: itk_image.GetMetaData(k) for k in itk_image.GetMetaDataKeys()}
+    header["datatype"] = 'func'
     with open(func_json_path, "w") as outfile:
         json.dump(header, outfile, indent=4)
 
