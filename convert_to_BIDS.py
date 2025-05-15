@@ -68,7 +68,7 @@ t1_json_path = t1_nii_path.replace(".nii.gz", ".json")
 if not os.path.exists(t1_nii_path):
     shutil.copy(t1_path_orig,t1_nii_path)
 
-if os.path.exists(t1_json_path_orig) && not os.path.exists(t1_json_path):
+if os.path.exists(t1_json_path_orig) and not os.path.exists(t1_json_path):
     shutil.copy(t1_json_path_orig,t1_json_path)
 
 # save dict in 'header.json'
@@ -94,7 +94,7 @@ func_json_path = func_nii_path.replace(".nii.gz", ".json")
 if not os.path.exists(func_nii_path):
     shutil.copy(func_path_orig,func_nii_path)
     
-if os.path.exists(func_json_path_orig) && not os.path.exists(func_json_path):
+if os.path.exists(func_json_path_orig) and not os.path.exists(func_json_path):
     shutil.copy(func_json_path_orig,func_json_path)
 
 # save dict in 'header.json'
