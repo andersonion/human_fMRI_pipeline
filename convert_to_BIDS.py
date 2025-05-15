@@ -44,11 +44,12 @@ def mkcdir(folderpaths, sftp=None):
 # Is this a test subject for debugging?
 #subj = 'ADRC0001'
 
+if subj[0].isdigit():
+	subj = 'S' + subj
 
-
-subj_folder = os.path.join(output_path,f'sub-{subj}')
-anat_folder = os.path.join(output_path,f'sub-{subj}/anat')
-func_folder = os.path.join(output_path,f'sub-{subj}/func')
+subj_folder = os.path.join(output_path,f'{subj}')
+anat_folder = os.path.join(output_path,f'{subj}/anat')
+func_folder = os.path.join(output_path,f'{subj}/func')
 
 mkcdir([subj_folder,anat_folder,func_folder],None)
 
