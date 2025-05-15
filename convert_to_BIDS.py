@@ -59,7 +59,7 @@ mkcdir([subj_folder,anat_folder,func_folder],None)
 
 # Hey you! Change this as needed for your data.
 t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with your file
-
+t1_json_path_orig = t1_nii_path_orig.replace(".nii.gz", ".json")
 
 # BIDS standards -- Do not change
 t1_nii_path = os.path.join(anat_folder,f'sub-{subj}_T1w.nii.gz')
@@ -67,6 +67,9 @@ t1_json_path = t1_nii_path.replace(".nii.gz", ".json")
 
 if not os.path.exists(t1_nii_path):
     shutil.copy(t1_path_orig,t1_nii_path)
+
+if os.path.exists(t1_json_path_orig) && not os.path.exists(t1_json_path):
+    shutil.copy(t1_json_path_orig,t1_json_path)
 
 # save dict in 'header.json'
 if not os.path.exists(t1_json_path):
@@ -90,6 +93,9 @@ func_json_path = func_nii_path.replace(".nii.gz", ".json")
 
 if not os.path.exists(func_nii_path):
     shutil.copy(func_path_orig,func_nii_path)
+    
+if os.path.exists(func_json_path_orig) && not os.path.exists(func_json_path):
+    shutil.copy(func_json_path_orig,func_json_path)
 
 # save dict in 'header.json'
 if not os.path.exists(func_json_path):
