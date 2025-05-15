@@ -48,7 +48,7 @@ if subj[0].isdigit():
 	subj = 'S' + subj
 
 o_subj = subj
-subj.remove('_')
+subj.replace('_',"")
 
 
 subj_folder = os.path.join(output_path,f'sub-{subj}')
