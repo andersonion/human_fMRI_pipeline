@@ -62,6 +62,8 @@ else:
 fmri_command = f'singularity exec --bind /mnt/newStor:/mnt/newStor {SID}/fmriprep-v25.0.0.sif fmriprep'
 
 subj = (sys.argv[1])
+clean_subj = subj.replace('_',"")
+
 output_BIDS = os.path.join(root_proj,f"{project}_BIDS/")
 fmriprep_output = os.path.join(root_proj,'fmriprep_output')
 
@@ -71,11 +73,11 @@ print(f'output_BIDS = {output_BIDS} ')
 print(f'fmriprep_output = {fmriprep_output} ')
 
 command = f' {fmri_command} {output_BIDS} {fmriprep_output} ' \
-    f'participant --participant-label {subj} -w {work_dir} --nthreads 20 ' \
+    f'participant --participant-label {clean_subj} -w {work_dir} --nthreads 20 ' \
     f'--output-spaces T1w'
 os.system(command)
 print(command)
 try:
     work_subj_dir = os.path.join(glob.glob(os.path.join(work_dir,'fmriprep*'))[0],f'*{subj}')
 except IndexError:
-    print(f'Could not find work subject directory for {subj}')
+    print(f'Could not find work subject directory for {clean_subj}')
