@@ -59,7 +59,7 @@ mkcdir([subj_folder,anat_folder,func_folder],None)
 
 # Hey you! Change this as needed for your data.
 t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with your file
-t1_json_path_orig = t1_nii_path_orig.replace(".nii.gz", ".json")
+t1_json_path_orig = t1_path_orig.replace(".nii.gz", ".json")
 
 # BIDS standards -- Do not change
 t1_nii_path = os.path.join(anat_folder,f'sub-{subj}_T1w.nii.gz')
