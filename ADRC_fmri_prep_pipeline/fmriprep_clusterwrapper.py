@@ -59,7 +59,7 @@ if not os.path.exists(sbatch_folder_path):
 
 
 
-data_path = f"{BD}/{project}/{project}_BIDS'
+data_path = f"{BD}/{project}/{project}_BIDS"
 
 checker=True
 outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
