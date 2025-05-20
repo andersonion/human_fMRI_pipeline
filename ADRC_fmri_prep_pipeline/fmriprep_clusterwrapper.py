@@ -65,7 +65,8 @@ checker=True
 outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
 
 list_folders_path = os.listdir(data_path)
-list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' in i]
+#list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' in i]
+list_of_subjs_long = [i for i in list_folders_path if "sub-" in i and not '.' in i]
 subjects = sorted(list_of_subjs_long)
 list_of_subjs = [i.replace('sub-','') for i in list_of_subjs_long]
 #list_of_subjs = ['ADRC0001']
