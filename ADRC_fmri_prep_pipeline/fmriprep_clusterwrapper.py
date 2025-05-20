@@ -79,7 +79,7 @@ for subj in list_of_subjs:
         if os.path.exists(output_file_name):
             #print(f'Already did subject {subj}')
             continue
-    python_command = "python3 " + code_folder "/fmri_prep.py "+subj
+    python_command = "python3 " + code_folder "/fmri_prep.py " + subj
     job_name = job_descrp + "_"+ subj
     
     # If the gunnies folder is up to date, either the sge or slurm submit script can be used,
