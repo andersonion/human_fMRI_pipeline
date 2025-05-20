@@ -22,6 +22,8 @@ import sys
 # Make sure important paths exist and are set:
 try :
     BD = os.environ['BIGGUS_DISKUS']
+    # Force to be human if set to mouse:
+    BD = BD.replace('/mouse','/human') 
 #os.environ['GIT_PAGER']
 except KeyError:  
     print('BD not found locally')
