@@ -69,8 +69,9 @@ list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' i
 subjects = sorted(list_of_subjs_long)
 list_of_subjs = [i.replace('sub-','') for i in list_of_subjs_long]
 #list_of_subjs = ['ADRC0001']
+print(subjects)
 for subj in list_of_subjs:
-    #print(subj)
+    print(subj)
     #fmri_file = list_fmir_folders_path +subj + "/ses-1/func/" + subj +"_ses-1_bold.nii.gz" 
     #nib.load(fmri_file)
     if checker:
