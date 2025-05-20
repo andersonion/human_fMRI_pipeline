@@ -69,7 +69,7 @@ list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' i
 subjects = sorted(list_of_subjs_long)
 list_of_subjs = [i.replace('sub-','') for i in list_of_subjs_long]
 #list_of_subjs = ['ADRC0001']
-print(data_path)
+print(list_folders_path)
 print(subjects)
 for subj in list_of_subjs:
     print(subj)
