@@ -180,10 +180,10 @@ if host=='santorini':
     root_proj = '/Volumes/Data/Badea/Lab/human/ADRC/'
 elif host in qial_hosts: 
 	root = f'{WORK}/'
-    root_proj = f'{BD}/{project}/'
+	root_proj = f'{BD}/{project}/'
 else:
-    root = '/mnt/munin2/Badea/Lab/'
-    root_proj = '/mnt/munin2/Badea/Lab/human/ADRC/'
+	root = '/mnt/munin2/Badea/Lab/'
+	root_proj = '/mnt/munin2/Badea/Lab/human/ADRC/'
 
 data_path = f'{BD}/{project}/fmriprep_output
 SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
