@@ -92,6 +92,6 @@ for subj in list_of_subjs:
     # If the gunnies folder is up to date, either the sge or slurm submit script can be used,
     # regardless of which cluster you be on.
     command = GD + "submit_sge_cluster_job.bash " + sbatch_folder_path + " "+ job_name + " 0 0 '"+ python_command+"'"   
-    #os.system(command)
+    os.system(command)
     print(f'Launched subject {subj}')
     #os.system(python_command)
