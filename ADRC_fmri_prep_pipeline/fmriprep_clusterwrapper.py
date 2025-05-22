@@ -82,9 +82,9 @@ for subj in list_of_subjs:
         ## as part of the file name.
         #output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz')
         output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
-        #print(output_file_name)
+        print(output_file_name)
         if os.path.exists(output_file_name):
-            #print(f'Already did subject {subj}')
+            print(f'Already did subject {subj}')
             continue
     python_command = "python3 " + code_folder + "/fmri_prep.py " + subj
     job_name = job_descrp + "_"+ subj
@@ -92,6 +92,6 @@ for subj in list_of_subjs:
     # If the gunnies folder is up to date, either the sge or slurm submit script can be used,
     # regardless of which cluster you be on.
     command = GD + "submit_sge_cluster_job.bash " + sbatch_folder_path + " "+ job_name + " 0 0 '"+ python_command+"'"   
-    os.system(command)
+    #os.system(command)
     print(f'Launched subject {subj}')
     #os.system(python_command)
