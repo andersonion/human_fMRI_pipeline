@@ -52,7 +52,7 @@ project = "ADNI"
 
 #create sbatch folder
 job_descrp =  "fmri_coreg"
-sbatch_folder_path = f"{BD}/{project}_prep/"+job_descrp + '_sbatch/'
+sbatch_folder_path = f"{BD}/{project}/"+job_descrp + '_sbatch/'
 
 if not os.path.exists(sbatch_folder_path):
     os.system(f"mkdir -p {sbatch_folder_path}" )
@@ -62,7 +62,9 @@ if not os.path.exists(sbatch_folder_path):
 data_path = f"{BD}/{project}/{project}_BIDS"
 
 checker=True
-outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
+## For some reason, the outputs are going somewhere different compared to the original script.
+#outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
+outpathfolder = f"{BD}/{project}/fmriprep_output
 
 list_folders_path = os.listdir(data_path)
 #list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' in i]
