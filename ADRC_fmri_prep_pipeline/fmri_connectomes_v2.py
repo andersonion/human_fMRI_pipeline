@@ -209,6 +209,7 @@ for subj in subjects:
     subj_strip = subj
     subj_path = os.path.join(fmriprep_output, f'sub-{subj_strip}')
     fmri_path = os.path.join(subj_path,'func',f'sub-{subj_strip}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
+    print(fmri_path)
     if not os.path.exists(fmri_path):
         txt = (f'Could not find the fmri for subject {subj_strip}')
         print(txt)
