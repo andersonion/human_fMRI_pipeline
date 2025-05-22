@@ -64,7 +64,7 @@ data_path = f"{BD}/{project}/{project}_BIDS"
 checker=True
 ## For some reason, the outputs are going somewhere different compared to the original script.
 #outpathfolder = f"{BD}/{project}_prep/fmriprep_output"
-outpathfolder = f"{BD}/{project}/fmriprep_output
+outpathfolder = f"{BD}/{project}/fmriprep_output"
 
 list_folders_path = os.listdir(data_path)
 #list_of_subjs_long = [i for i in list_folders_path if project in i and not '.' in i]
