@@ -231,7 +231,7 @@ for subj in subjects:
 
     if not os.path.exists(flabel) or overwrite:
         if not os.path.exists(new_label) or overwrite:
-            label_path = os.path.join(SAMBA_path_results_prefix + '/' + subj_temp, subj_temp + '_IITmean_RPI_labels.nii.gz')
+            label_path = os.path.join(SAMBA_path_results_prefix + subj_temp, subj_temp + '_IITmean_RPI_labels.nii.gz')
             label_nii = nib.load(label_path)
             labels_data = label_nii.get_fdata()
             labels = np.unique(labels_data)
