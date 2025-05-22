@@ -185,7 +185,7 @@ else:
 	root = '/mnt/munin2/Badea/Lab/'
 	root_proj = '/mnt/munin2/Badea/Lab/human/ADRC/'
 
-data_path = f'{BD}/{project}/fmriprep_output
+data_path = f'{BD}/{project}/fmriprep_output'
 SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
 
 list_folders_path = os.listdir(dat_path)
