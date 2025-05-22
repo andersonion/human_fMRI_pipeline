@@ -55,11 +55,16 @@ def parcellated_FC_matrix(sub_timeseries, atlas_idx, roi_list):
     return corr_matrix
 
 
+# Make this code reusable for other projects    
+project = "ADNI"
+
+
 flabel = os.path.join('/mnt/munin2/Badea/Lab/human/ADRC/new_labels/', subj + '_new_labels_resampled.nii.gz')
 new_label = os.path.join(  '/mnt/munin2//Badea/Lab/human/ADRC/new_labels/' ,  subj +  '.nii.gz')
 
-
-fmri_path = '/mnt/munin2/Badea/Lab/human/ADRC/fmriprep_output/sub-' + subj+'/func/sub-' + subj + '_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz'
+## Update file name structure...maybe due to using more recent version of fmriprep
+# fmri_path = '/mnt/munin2/Badea/Lab/human/ADRC/fmriprep_output/sub-' + subj+'/func/sub-' + subj + '_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz'
+fmri_path = '/mnt/munin2/Badea/Lab/human/ADRC/fmriprep_output/sub-' + subj+'/func/sub-' + subj + '_task-rest_space-T1w_desc-preproc_bold.nii.gz'
 fmri_nii=nib.load(fmri_path)
 
 time_serts_path = os.path.join( '/mnt/munin2//Badea/Lab/human/ADRC/fmri_connectomes/', f'time_serts_{subj}.csv')
