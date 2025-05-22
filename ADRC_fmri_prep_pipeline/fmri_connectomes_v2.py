@@ -188,7 +188,7 @@ else:
 data_path = f'{BD}/{project}/fmriprep_output'
 SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
 
-list_folders_path = os.listdir(dat_path)
+list_folders_path = os.listdir(data_path)
 list_of_subjs_long = [i for i in list_folders_path if 'sub-' in i and not '.' in i and not '.html' in i]
 list_of_subjs = sorted(list_of_subjs_long)
 
