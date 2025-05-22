@@ -206,7 +206,7 @@ overwrite=False
 subjects = list_of_subjs
 
 for subj in subjects:
-    subj_strip = subj
+    subj_strip = subj.replace('sub-',"")
     subj_path = os.path.join(fmriprep_output, f'sub-{subj_strip}')
     fmri_path = os.path.join(subj_path,'func',f'sub-{subj_strip}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
     print(fmri_path)
@@ -218,7 +218,7 @@ for subj in subjects:
     flabel = os.path.join(conn_path, subj + '_new_labels_resampled.nii.gz')
     new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
 
-    subj_temp = subj.replace('y','_y')
+    subj_temp = subj_strip.replace('y','_y')
 
     mkcdir(func_conn_path)
     fmri_nii=nib.load(fmri_path)
