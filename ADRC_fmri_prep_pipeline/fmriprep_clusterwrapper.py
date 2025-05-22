@@ -69,15 +69,17 @@ list_folders_path = os.listdir(data_path)
 list_of_subjs_long = [i for i in list_folders_path if "sub-" in i and not '.' in i]
 subjects = sorted(list_of_subjs_long)
 list_of_subjs = [i.replace('sub-','') for i in list_of_subjs_long]
-#list_of_subjs = ['ADRC0001']
-print(list_of_subjs_long)
-print(subjects)
+
 for subj in list_of_subjs:
-    print(subj)
+    
     #fmri_file = list_fmir_folders_path +subj + "/ses-1/func/" + subj +"_ses-1_bold.nii.gz" 
     #nib.load(fmri_file)
     if checker:
-        output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz')
+        ## My results have a slightly different naming convention for some reason...maybe it's
+        ## on account of using a later version of fmriprep...no longer have 'ingstate_run-01'
+        ## as part of the file name.
+        #output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz')
+        output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
         #print(output_file_name)
         if os.path.exists(output_file_name):
             #print(f'Already did subject {subj}')
