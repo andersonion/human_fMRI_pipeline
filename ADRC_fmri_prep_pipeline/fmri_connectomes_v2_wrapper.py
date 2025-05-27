@@ -108,7 +108,12 @@ if run_code:
 	
 	current_file_path = os.path.abspath(__file__)
 	code_folder = os.path.dirname(current_file_path)
+
 	job_descrp = "fMRI_connectomes"
+	sbatch_folder_path = f"{BD}/{project}/"+job_descrp + '_sbatch/'
+	if not os.path.exists(sbatch_folder_path):
+		os.system(f"mkdir -p {sbatch_folder_path}" )
+	
 	data_path = f'{BD}/{project}/fmriprep_output'
 	SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
 	
