@@ -2,7 +2,7 @@
 
 mother_script=$1
 oms=${mother_script}
-if [[ "x${mother_script}x" =! "xx" && ! -e ${mother_script} ]];then
+if [[ "x${mother_script}x" != "xx" && ! -e ${mother_script} ]];then
 	mother_script=${PWD}/${mother_script};
 	if [[ ! -e ${mother_script} ]];then
 		echo "A mother script was specified but could not be found;";
