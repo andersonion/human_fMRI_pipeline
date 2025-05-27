@@ -14,7 +14,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 
-if conda_env not "fmri_connectomes":
+if conda_env != "fmri_connectomes":
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	subprocess.run([f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"])
 
