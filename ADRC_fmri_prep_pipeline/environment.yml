@@ -5,6 +5,7 @@ dependencies:
   - python=3.10
   - pip
   - conda-forge::nibabel=5.1.0
+  - conda-forge::nilearn=0.11.1
   - numpy=1.26.*
   - begins=0.9
   - Cython=3.0.6
