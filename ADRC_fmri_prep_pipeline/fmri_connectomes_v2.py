@@ -16,10 +16,10 @@ if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
 
-
+env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 run_code = True
-if conda_env != "fmri_connectomes":
+if conda_env != env_path:
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	run_code = False
 	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {subj} {project}"
