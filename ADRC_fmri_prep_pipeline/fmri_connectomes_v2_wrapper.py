@@ -53,8 +53,10 @@ def mkcdir(folderpaths, sftp=None):
 
 # Change as needed:
 default_project = "ADNI"
-	
-project = (sys.argv[1])
+project = ''
+if len(sys.argv) > 1:
+	project = (sys.argv[1])
+
 if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project

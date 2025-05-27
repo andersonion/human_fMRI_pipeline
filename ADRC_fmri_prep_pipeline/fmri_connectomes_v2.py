@@ -7,11 +7,17 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Change as needed:
 default_project = "ADNI"
-subj = (sys.argv[1])
+
+subj = ''
+if len(sys.argv) > 1:
+	subj = (sys.argv[1])
 if subj == '':
 	raise ValueError(f"No subject specified; no work will be done. Quitting now...")
+
+project = ''
+if len(sys.argv) > 2:
+	project = (sys.argv[2])
 	
-project = (sys.argv[2])
 if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
