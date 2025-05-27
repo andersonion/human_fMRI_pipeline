@@ -1,5 +1,5 @@
 #! /bin/env bash
-
+conda init;
 mother_script=$1
 oms=${mother_script}
 if [[ "x${mother_script}x" != "xx" && ! -e ${mother_script} ]];then
@@ -33,7 +33,6 @@ active_conda_env_test=$(conda info --envs | grep '*' | grep '/fmri_connectomes' 
 if ((! ${active_conda_env_test} ));then
 	echo "Conda environment 'fmri_connectomes' does not appear to be activated; activating now..."
 	env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -s [:space:]);
-	conda init;
 	conda activate ${env_path};
 fi
 
