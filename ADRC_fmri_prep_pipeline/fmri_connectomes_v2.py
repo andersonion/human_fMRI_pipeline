@@ -16,7 +16,11 @@ if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
 
-env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
+env_path = subprocess.check_output(
+    "conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s ' '",
+    shell=True,
+    text=True
+).strip()
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 run_code = True
 if conda_env != env_path:

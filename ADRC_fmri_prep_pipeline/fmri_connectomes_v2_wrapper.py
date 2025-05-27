@@ -5,7 +5,12 @@ script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
-env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
+env_path = subprocess.check_output(
+    "conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s ' '",
+    shell=True,
+    text=True
+).strip()
+
 run_code = True
 if conda_env != env_path:
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
