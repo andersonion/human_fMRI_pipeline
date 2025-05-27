@@ -35,7 +35,7 @@ if ((! ${active_conda_env_test} ));then
 	conda activate fmri_connectomes;
 fi
 
-conda_test=$(conda info --envs | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 active_conda_env_test=$(conda info --envs | grep '*' | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
 
 if (( ${conda_test} && ${active_conda_env_test} ));then
