@@ -46,7 +46,7 @@ if ((! ${active_conda_env_test} ));then
 		echo "conda not found in PATH"
 		exit 1
 	fi
-	env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -s [:space:]);
+	env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
 	conda activate ${env_path};
 fi
 
@@ -58,7 +58,7 @@ if (( ${conda_test} && ${active_conda_env_test} ));then
 	if [[ ${mother_script} ]];then
 		echo "Restarting mother script,"
 		echo "Full command:"
-		env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -s [:space:]);
+		env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
 		full_cmd= "conda run -n ${env_path} python3 ${ms_prefix}${@}"
 		echo "${full_cmd}"
 		#${full_cmd};
