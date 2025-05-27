@@ -230,8 +230,8 @@ if run_code:
 	print(fmri_path)
 	if not os.path.exists(fmri_path):
 		txt = (f'Could not find the fmri for subject {subj_strip}')
-		print(txt)
-		continue
+		raise FileNotFoundError(txt)
+		
 
 	flabel = os.path.join(conn_path, subj + '_new_labels_resampled.nii.gz')
 	new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
