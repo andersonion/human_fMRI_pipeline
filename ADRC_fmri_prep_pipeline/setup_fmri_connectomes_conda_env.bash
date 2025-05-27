@@ -23,21 +23,21 @@ fi
 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
-	echo "Conda env 'fmri_connectomes' does not appear to exist; configuring now..."
+	echo "Conda environment 'fmri_connectomes' does not appear to exist; configuring now..."
 	conda init;
 	conda env create -p ./fmri_connectomes --file environment.yml;
 fi
 
-active_conda_env_test=$(conda info --envs | grep '*' | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+active_conda_env_test=$(conda info --envs | grep '*' | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 
 if ((! ${active_conda_env_test} ));then
-	echo "Conda env 'fmri_connectomes' does not appear to be activated; activating now..."
+	echo "Conda environment 'fmri_connectomes' does not appear to be activated; activating now..."
 	conda init;
 	conda activate fmri_connectomes;
 fi
 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
-active_conda_env_test=$(conda info --envs | grep '*' | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+active_conda_env_test=$(conda info --envs | grep '*' | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 
 if (( ${conda_test} && ${active_conda_env_test} ));then
 	echo "Conda environment 'fmri_connectomes' successfully installed and activated."
