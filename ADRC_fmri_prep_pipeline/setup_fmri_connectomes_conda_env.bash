@@ -1,5 +1,5 @@
 #! /bin/env bash
-conda init;
+#conda init;
 mother_script=$1
 oms=${mother_script}
 ms_prefix='';
