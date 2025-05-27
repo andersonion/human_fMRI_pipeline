@@ -31,6 +31,7 @@ active_conda_env_test=$(conda info --envs | grep '*' | grep 'fmri_connectomes ' 
 
 if ((! ${active_conda_env_test} ));then
 	echo "Conda env 'fmri_connectomes' does not appear to be activated; activating now..."
+	conda init;
 	conda activate fmri_connectomes;
 fi
 
