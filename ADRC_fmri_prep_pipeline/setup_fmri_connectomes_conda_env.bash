@@ -35,6 +35,19 @@ if ((! ${active_conda_env_test} ));then
 	conda activate fmri_connectomes;
 fi
 
-if [[ ${mother_script} ]];then
-	python3 ${mother_script};
+conda_test=$(conda info --envs | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+active_conda_env_test=$(conda info --envs | grep '*' | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+
+if (( ${conda_test} && ${active_conda_env_test} ));then
+	echo "Conda environment 'fmri_connectomes' successfully installed and activated."
+	if [[ ${mother_script} ]];then
+		echo "Restarting mother script: ${mother_script}..."
+		python3 ${mother_script};
+	fi
+else
+	echo "ERROR: Conda environment 'fmri_connectomes' unsuccessfully created and/or loaded."
+	if [[ ${mother_script} ]];then
+		echo "WILLL NOT rerun mother script: ${mother_script}..."
+	fi
+	exit 1
 fi
