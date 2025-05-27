@@ -61,7 +61,7 @@ if (( ${conda_test} && ${active_conda_env_test} ));then
 		env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
 		full_cmd="conda run -n ${env_path} python3 ${ms_prefix}${@}"
 		echo "${full_cmd}"
-		#${full_cmd};
+		${full_cmd};
 	fi
 else
 	echo "ERROR: Conda environment 'fmri_connectomes' unsuccessfully created and/or loaded."

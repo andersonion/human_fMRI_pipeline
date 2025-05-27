@@ -4,12 +4,25 @@ import os, socket, sys, glob, subprocess
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
+
+# Change as needed:
+default_project = "ADNI"
+subj = (sys.argv[1])
+if subj == '':
+	raise ValueError(f"No subject specified; no work will be done. Quitting now...")
+	
+project = (sys.argv[2])
+if project == '':
+	print(f"No project specified; using default project: {default_project}")
+	project = default_project
+
+
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 run_code = True
 if conda_env != "fmri_connectomes":
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	run_code = False
-	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"
+	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {subj} {project}"
 	subprocess.run(setup_cmd, shell=True, check=True)
 
 import numpy as np
@@ -93,8 +106,6 @@ def label_mask_inplace(label_nii,target_nii):
     return(new_label_mat)
 
 
-
-
 def parcellated_matrix(sub_timeseries, atlas_idx, roi_list):
     timeseries_dict = {}
     for i in roi_list:
@@ -154,8 +165,7 @@ def round_label(label_path,label_outpath=None):
 def all_integers(lst):
     return all(isinstance(x, int) or (isinstance(x, float) and x.is_integer()) for x in lst)
 
-# Change as needed:
-project = 'ADNI'
+
 if run_code:
 	# Make sure important paths exist and are set:
 	try :
@@ -200,10 +210,7 @@ if run_code:
 	data_path = f'{BD}/{project}/fmriprep_output'
 	SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
 	
-	list_folders_path = os.listdir(data_path)
-	list_of_subjs_long = [i for i in list_folders_path if 'sub-' in i and not '.' in i and not '.html' in i]
-	list_of_subjs = sorted(list_of_subjs_long)
-	
+
 	
 	fmriprep_output = os.path.join(root_proj,'fmriprep_output')
 	conn_path = os.path.join(root_proj, 'connectomes')
@@ -215,136 +222,106 @@ if run_code:
 	
 	overwrite=False
 	
-	subjects = list_of_subjs
 	
-	for subj in subjects:
-		subj_strip = subj.replace('sub-',"")
-		subj_path = os.path.join(fmriprep_output, f'sub-{subj_strip}')
-		fmri_path = os.path.join(subj_path,'func',f'sub-{subj_strip}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
-		print(fmri_path)
-		if not os.path.exists(fmri_path):
-			txt = (f'Could not find the fmri for subject {subj_strip}')
-			print(txt)
-			continue
+	## Begin subject-specific work (previously this was inside a subject loop)
+	subj_strip = subj.replace('sub-',"")
+	subj_path = os.path.join(fmriprep_output, f'sub-{subj_strip}')
+	fmri_path = os.path.join(subj_path,'func',f'sub-{subj_strip}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
+	print(fmri_path)
+	if not os.path.exists(fmri_path):
+		txt = (f'Could not find the fmri for subject {subj_strip}')
+		print(txt)
+		continue
+
+	flabel = os.path.join(conn_path, subj + '_new_labels_resampled.nii.gz')
+	new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
 	
-		flabel = os.path.join(conn_path, subj + '_new_labels_resampled.nii.gz')
-		new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
-	
-		subj_temp = subj_strip.replace('y','_y')
-	
-		mkcdir(func_conn_path)
-		fmri_nii=nib.load(fmri_path)
-	
-		time_serts_path = os.path.join(func_conn_path, f'time_series_{subj_temp}.csv')
-		time_FC_path = os.path.join(func_conn_path,f'func_connectome_corr_{subj_temp}.csv')
-		time_FCvar_path = os.path.join(func_conn_path,f'func_connectome_covar_{subj_temp}.csv')
-	
-		print(f'Running functionnal connectomes for subject {subj}')
-	
-		if not os.path.exists(flabel) or overwrite:
-			if not os.path.exists(new_label) or overwrite:
-				label_path = os.path.join(SAMBA_path_results_prefix + subj_temp, subj_temp + '_IITmean_RPI_labels.nii.gz')
-				label_nii = nib.load(label_path)
-				labels_data = label_nii.get_fdata()
-				labels = np.unique(labels_data)
-				labels = np.delete(labels, 0)
-				label_nii_order = labels_data * 0.0
-	
-				path_atlas_legend = os.path.join(root, 'atlases', 'IITmean_RPI', 'IITmean_RPI_index.xlsx')
-				legend = pd.read_excel(path_atlas_legend)
-				new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
-	
-				# index_csf = legend [ 'Subdivisions_7' ] == '8_CSF'
-				# index_wm = legend [ 'Subdivisions_7' ] == '7_whitematter'
-				# vol_index_csf = legend[index_csf]
-	
-				for i in labels:
-					leg_index = np.where(legend['index2'] == i)
-					leg_index = leg_index[0][0]
-					ordered_num = legend['index'][leg_index]
-					label3d_index = np.where(labels_data == i)
-					label_nii_order[label3d_index] = ordered_num
-	
-				file_result = nib.Nifti1Image(label_nii_order, label_nii.affine, label_nii.header)
-				new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
-				nib.save(file_result, new_label)
-	
-	
-			"""
-			label_new_nii = nib.load(new_label)
-			label_spacing = label_new_nii.header.get_zooms()[0:3]
-			label_shape = label_new_nii.shape
-			label_new_data = label_new_nii.get_fdata()
-			fmri_spacing = fmri_nii.header.get_zooms()[0:3]
-			fmri_shape = fmri_nii.shape
-			#command = f'ResampleImage 3 {new_label} {flabel} {fmri_spacing[0]}x{fmri_spacing[1]}x{fmri_spacing[2]}x1'
-			#os.system(command)
-	
-			target_nii = nib.load(fmri_path)
-	
-			resampled_source_image = resample_to_output(label_new_nii, np.diagonal(target_nii.affine)[:3])
-			nib.save(resampled_source_image, flabel)
-			
-			scaling_factors = [label_spacing[i] / fmri_spacing[i] for i in range(3)]
-			resampled_image = zoom(label_new_data, scaling_factors, order=0, mode='nearest')
-			resampled_img = nib.Nifti1Image(resampled_image, fmri_nii.affine)
-			nib.save(resampled_img, flabel)
-			"""
-			"""
-			ants_label = ants_imgread(new_label)
-			ants_fmri = ants_imgread(fmri_path)
-			ants_output = resample_image_to_target(ants_label,ants_fmri,interp ='genericLabel',imagetype=3)
-			ants_imgwrite(ants_output, flabel)
-			"""
-	
-			# Run the command
-			#ants_apply_transforms = apply_transforms_to_points(ants_apply_transforms_command)
-	
+	subj_temp = subj_strip
+	if '_' not in subj_temp:
+		subj_temp = subj_temp.replace('y','_y')
+
+	mkcdir(func_conn_path)
+	fmri_nii=nib.load(fmri_path)
+
+	time_serts_path = os.path.join(func_conn_path, f'time_series_{subj_temp}.csv')
+	time_FC_path = os.path.join(func_conn_path,f'func_connectome_corr_{subj_temp}.csv')
+	time_FCvar_path = os.path.join(func_conn_path,f'func_connectome_covar_{subj_temp}.csv')
+
+	print(f'Running functionnal connectomes for subject {subj}')
+
+	if not os.path.exists(flabel) or overwrite:
+		if not os.path.exists(new_label) or overwrite:
+			label_path = os.path.join(SAMBA_path_results_prefix + subj_temp, subj_temp + '_IITmean_RPI_labels.nii.gz')
+			label_nii = nib.load(label_path)
+			labels_data = label_nii.get_fdata()
+			labels = np.unique(labels_data)
+			labels = np.delete(labels, 0)
+			label_nii_order = labels_data * 0.0
+
+			path_atlas_legend = os.path.join(root, 'atlases', 'IITmean_RPI', 'IITmean_RPI_index.xlsx')
+			legend = pd.read_excel(path_atlas_legend)
+			new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
+
+			# index_csf = legend [ 'Subdivisions_7' ] == '8_CSF'
+			# index_wm = legend [ 'Subdivisions_7' ] == '7_whitematter'
+			# vol_index_csf = legend[index_csf]
+
+			for i in labels:
+				leg_index = np.where(legend['index2'] == i)
+				leg_index = leg_index[0][0]
+				ordered_num = legend['index'][leg_index]
+				label3d_index = np.where(labels_data == i)
+				label_nii_order[label3d_index] = ordered_num
+
+			file_result = nib.Nifti1Image(label_nii_order, label_nii.affine, label_nii.header)
+			new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
+			nib.save(file_result, new_label)
+
+	label_nii=nib.load(new_label)
+
+	if not all_integers(np.unique(label_nii.get_fdata())):
+		round_label(new_label)
 		label_nii=nib.load(new_label)
-	
-		if not all_integers(np.unique(label_nii.get_fdata())):
-			round_label(new_label)
-			label_nii=nib.load(new_label)
-	
-		masker = NiftiLabelsMasker(
-			labels_img=label_nii,
-			standardize="zscore_sample",
-			standardize_confounds="zscore_sample",
-			memory="nilearn_cache",
-			verbose=5,
-		)
-	
-		# Extract the time series
-		confounds, sample_mask = load_confounds(fmri_path, strategy=["motion", "wm_csf"], motion="basic")
-	
-		time_series = masker.fit_transform(fmri_nii, confounds=confounds, sample_mask=sample_mask)
-	
-		if not os.path.exists(time_serts_path) or overwrite:
-			if os.path.exists(time_serts_path):
-				os.remove(time_serts_path)
-			np.savetxt(time_serts_path, time_series, delimiter=',', fmt='%s')
-	
-		correlation_measure = ConnectivityMeasure(
-			kind="correlation",
-			standardize="zscore_sample",
-		)
-	
-		covar_measure = ConnectivityMeasure(
-			kind="covariance",
-			standardize="zscore_sample",
-		)
-	
-		correlation_matrix = correlation_measure.fit_transform([time_series])[0]
-		covar_matrix = covar_measure.fit_transform([time_series])[0]
-	
-		np.fill_diagonal(correlation_matrix, 0)
-	
-		if not os.path.exists(time_FC_path) or overwrite:
-			if os.path.exists(time_FC_path):
-				os.remove(time_FC_path)
-			np.savetxt(time_FC_path, correlation_matrix, delimiter=',', fmt='%s')
-	
-		if not os.path.exists(time_FCvar_path) or overwrite:
-			if os.path.exists(time_FCvar_path):
-				os.remove(time_FCvar_path)
-			np.savetxt(time_FCvar_path, covar_matrix, delimiter=',', fmt='%s')
+
+	masker = NiftiLabelsMasker(
+		labels_img=label_nii,
+		standardize="zscore_sample",
+		standardize_confounds="zscore_sample",
+		memory="nilearn_cache",
+		verbose=5,
+	)
+
+	# Extract the time series
+	confounds, sample_mask = load_confounds(fmri_path, strategy=["motion", "wm_csf"], motion="basic")
+
+	time_series = masker.fit_transform(fmri_nii, confounds=confounds, sample_mask=sample_mask)
+
+	if not os.path.exists(time_serts_path) or overwrite:
+		if os.path.exists(time_serts_path):
+			os.remove(time_serts_path)
+		np.savetxt(time_serts_path, time_series, delimiter=',', fmt='%s')
+
+	correlation_measure = ConnectivityMeasure(
+		kind="correlation",
+		standardize="zscore_sample",
+	)
+
+	covar_measure = ConnectivityMeasure(
+		kind="covariance",
+		standardize="zscore_sample",
+	)
+
+	correlation_matrix = correlation_measure.fit_transform([time_series])[0]
+	covar_matrix = covar_measure.fit_transform([time_series])[0]
+
+	np.fill_diagonal(correlation_matrix, 0)
+
+	if not os.path.exists(time_FC_path) or overwrite:
+		if os.path.exists(time_FC_path):
+			os.remove(time_FC_path)
+		np.savetxt(time_FC_path, correlation_matrix, delimiter=',', fmt='%s')
+
+	if not os.path.exists(time_FCvar_path) or overwrite:
+		if os.path.exists(time_FCvar_path):
+			os.remove(time_FCvar_path)
+		np.savetxt(time_FCvar_path, covar_matrix, delimiter=',', fmt='%s')
