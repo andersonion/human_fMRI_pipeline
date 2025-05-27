@@ -21,7 +21,7 @@ if [[ ${mother_script} ]];then
 	fi
 fi
 
-conda_test=$(conda info --envs | grep 'fmri_connectomes ' 2>/dev/null | wc -l);
+conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
 	echo "Conda env 'fmri_connectomes' does not appear to exist; configuring now..."
 	conda env create -p ./fmri_connectomes --file environment.yml;
@@ -47,7 +47,7 @@ if (( ${conda_test} && ${active_conda_env_test} ));then
 else
 	echo "ERROR: Conda environment 'fmri_connectomes' unsuccessfully created and/or loaded."
 	if [[ ${mother_script} ]];then
-		echo "WILLL NOT rerun mother script: ${mother_script}..."
+		echo "WILL NOT rerun mother script: ${mother_script}..."
 	fi
 	exit 1
 fi
