@@ -1,5 +1,5 @@
 # This code is imported from Jacques Stout's parallel repository
-import os, socket, sys, glob. subprocess
+import os, socket, sys, glob, subprocess
 import numpy as np
 import nibabel as nib
 import pandas as pd
