@@ -24,6 +24,7 @@ fi
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
 	echo "Conda env 'fmri_connectomes' does not appear to exist; configuring now..."
+	conda init;
 	conda env create -p ./fmri_connectomes --file environment.yml;
 fi
 
