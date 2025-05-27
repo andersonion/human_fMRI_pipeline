@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.10
+  - pip
   - conda-forge::nibabel=5.1.0
   - numpy=1.26.*
   - pandas=2.1
