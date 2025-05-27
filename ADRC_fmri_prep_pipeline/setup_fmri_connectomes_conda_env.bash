@@ -15,7 +15,7 @@ if [[ "x${mother_script}x" != "xx" && ! -e ${mother_script} ]];then
 fi
 
 if [[ ${mother_script} ]];then
-	if [[ ${mother_script##*.} != 'py']];then
+	if [[ ${mother_script##*.} != 'py' ]];then
 		echo "Mother script does not appear to be a python script."
 		echo "An attempt to run ${mother_script} with a python interpreter will be made, but expect it to fail."
 	fi
