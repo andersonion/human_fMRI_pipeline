@@ -1,13 +1,5 @@
 # This code is imported from Jacques Stout's parallel repository
 import os, socket, sys, glob, subprocess
-import numpy as np
-import nibabel as nib
-import pandas as pd
-from nibabel.processing import resample_to_output
-from nilearn.input_data import NiftiLabelsMasker
-from nilearn.interfaces.fmriprep import load_confounds
-from nilearn.connectome import ConnectivityMeasure
-
 
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -17,6 +9,14 @@ conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 if conda_env != "fmri_connectomes":
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	subprocess.run([f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"])
+
+import numpy as np
+import nibabel as nib
+import pandas as pd
+from nibabel.processing import resample_to_output
+from nilearn.input_data import NiftiLabelsMasker
+from nilearn.interfaces.fmriprep import load_confounds
+from nilearn.connectome import ConnectivityMeasure
 
 
 def mkcdir(folderpaths, sftp=None):
