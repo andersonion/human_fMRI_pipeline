@@ -8,7 +8,8 @@ conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 
 if conda_env != "fmri_connectomes":
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
-	subprocess.run([f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"])
+	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"
+	subprocess.run(setup_cmd, shell=True, check=True)
 
 import numpy as np
 import nibabel as nib
