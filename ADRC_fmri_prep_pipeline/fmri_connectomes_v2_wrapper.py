@@ -106,6 +106,9 @@ if run_code:
 	# I currently do not know what results for which I should be checking...
 	checker = False	
 	
+	current_file_path = os.path.abspath(__file__)
+	code_folder = os.path.dirname(current_file_path)
+	
 	data_path = f'{BD}/{project}/fmriprep_output'
 	SAMBA_path_results_prefix = f'{BD}/diffusion_prep_MRtrix_'
 	
