@@ -14,7 +14,7 @@ print("THIS PORTION OF CODE HAS BEEN RAN")
 
 use_cluster = True
 if len(sys.argv) > 2:
-	if sys.argv[2] == 0:
+	if sys.argv[2] == '0':
 		use_cluster = False
 		print("You have chosen to not take advantage of the power of the HPC resources, running 'locally'...")
 
