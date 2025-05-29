@@ -247,7 +247,7 @@ if run_code:
 	new_label = os.path.join(conn_path, subj + '_new_labels.nii.gz')
 	
 	subj_temp = subj_strip
-	if '_' not in subj_temp:
+	if '_y' not in subj_temp:
 		subj_temp = subj_temp.replace('y','_y')
 
 	mkcdir(func_conn_path)
@@ -257,7 +257,7 @@ if run_code:
 	time_FC_path = os.path.join(func_conn_path,f'func_connectome_corr_{subj_temp}.csv')
 	time_FCvar_path = os.path.join(func_conn_path,f'func_connectome_covar_{subj_temp}.csv')
 
-	print(f'Running functionnal connectomes for subject {subj}')
+	print(f'Running functional connectomes for subject {subj_strip}')
 
 	if not os.path.exists(flabel) or overwrite:
 		if not os.path.exists(new_label) or overwrite:
