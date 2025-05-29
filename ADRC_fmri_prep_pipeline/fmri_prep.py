@@ -48,7 +48,7 @@ else:
 
 SID=os.environ['SINGULARITY_IMAGE_DIR']
 FREESURFER_HOME=os.environ['FREESURFER_HOME']
-ANACONDA_HOME=/home/apps//ubuntu-22.04/anaconda3/ssl/
+ANACONDA_HOME = "/home/apps//ubuntu-22.04/anaconda3/ssl/"
 if os.path.exists(SID):
 	pass
 else:
