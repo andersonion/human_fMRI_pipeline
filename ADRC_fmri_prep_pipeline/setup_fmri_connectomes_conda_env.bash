@@ -59,7 +59,8 @@ if (( ${conda_test} && ${active_conda_env_test} ));then
 		echo "Restarting mother script,"
 		echo "Full command:"
 		env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
-		full_cmd="conda run -p ${env_path} python3 ${ms_prefix}${@}"
+		shift
+		full_cmd="conda run -p ${env_path} python3 ${mother_script} ${@}"
 		echo "${full_cmd}"
 		${full_cmd};
 	fi
