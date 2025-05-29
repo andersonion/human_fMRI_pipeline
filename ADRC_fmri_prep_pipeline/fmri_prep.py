@@ -46,7 +46,9 @@ else:
 	raise FileNotFoundError(f'root_proj (value: {root_proj} ) is either not set or does not exist.')
 
 
-SID=os.environ['SINGULARITY_IMAGE_DIR'];
+SID=os.environ['SINGULARITY_IMAGE_DIR']
+FREESURFER_HOME=os.environ['FREESURFER_HOME']
+ANACONDA_HOME=/home/apps//ubuntu-22.04/anaconda3/ssl/
 if os.path.exists(SID):
 	pass
 else:
@@ -64,7 +66,9 @@ else:
 #fmri_command = f'singularity exec --bind /mnt/newStor:/mnt/newStor --bind /home/apps:/home/apps {SID}/fmriprep-v25.0.0.sif fmriprep'
 ## It seems that it was a mistake to include '--bind /home/apps:/home/apps'...that would then call our messed up fsl/python configurations
 ## instead of the containerized versions; removing that option	
-fmri_command = f'singularity exec --cleanenv -B /mnt/newStor:/mnt/newStor --fs-license-file /home/apps/freesurfer/license.txt -B /home/apps//ubuntu-22.04/anaconda3/ssl/:/home/apps//ubuntu-22.04/anaconda3/ssl/ {SID}/fmriprep-v25.0.0.sif fmriprep'
+fmri_command = f'singularity exec --cleanenv -B /mnt/newStor:/mnt/newStor -B {FREESURFER_HOME}/license.txt:/opt/freesurfer/license.txt {SID}/fmriprep-v25.0.0.sif fmriprep'
+# May need this: -B {ANACONDA_HOME}:{ANACONDA_HOME} 
+
 subj = (sys.argv[1])
 clean_subj = subj.replace('_',"")
 
@@ -78,7 +82,7 @@ print(f'fmriprep_output = {fmriprep_output} ')
 
 command = f' {fmri_command} {output_BIDS} {fmriprep_output} ' \
     f'participant --participant-label {clean_subj} -w {work_dir} --nthreads 20 ' \
-    f'--output-spaces T1w'
+    f'--output-spaces T1w  --fs-license-file /opt/freesurfer/license.txt'
 os.system(command)
 print(command)
 try:
