@@ -4,6 +4,9 @@ import os, socket, sys, glob, subprocess
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
+import shutil;
+print(shutil.which("python"))
+print(subprocess.getoutput("python -m pip list | grep nilearn"))
 
 # Change as needed:
 default_project = "ADNI"

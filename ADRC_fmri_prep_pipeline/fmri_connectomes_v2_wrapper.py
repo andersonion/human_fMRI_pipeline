@@ -10,7 +10,6 @@ if len(sys.argv) > 1:
 if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
-print("THIS PORTION OF CODE HAS BEEN RAN")
 
 use_cluster = True
 if len(sys.argv) > 2:
