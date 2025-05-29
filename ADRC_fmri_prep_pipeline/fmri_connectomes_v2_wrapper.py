@@ -1,6 +1,22 @@
 # This code is imported from Jacques Stout's parallel repository
 import os, socket, sys, glob, subprocess
 
+# Change as needed:
+default_project = "ADNI"
+project = ''
+if len(sys.argv) > 1:
+	project = (sys.argv[1])
+
+if project == '':
+	print(f"No project specified; using default project: {default_project}")
+	project = default_project
+	
+use_cluster = True
+if len(sys.argv) > 2:
+	if sys.argv[2] == 0:
+		use_cluster = False
+		print("You have chosen to not take advantage of the power of the HPC resources, running 'locally'...")
+
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -51,21 +67,6 @@ def mkcdir(folderpaths, sftp=None):
                 except:
                     sftp.mkdir(folderpath)
 
-# Change as needed:
-default_project = "ADNI"
-project = ''
-if len(sys.argv) > 1:
-	project = (sys.argv[1])
-
-if project == '':
-	print(f"No project specified; using default project: {default_project}")
-	project = default_project
-	
-use_cluster = True
-if len(sys.argv) > 2:
-	if sys.argv[2] == 0:
-		use_cluster = False
-		print("You have chosen to not take advantage of the power of the HPC resources, running 'locally'...")
 	
 	
 if run_code:
