@@ -177,6 +177,13 @@ def all_integers(lst):
 
 
 if run_code:
+
+	import shutil;
+	print(shutil.which("python"))
+	print(subprocess.getoutput("python -m pip list | grep nilearn"))
+
+
+
 	# Make sure important paths exist and are set:
 	try :
 		BD = os.environ['BIGGUS_DISKUS']
