@@ -48,7 +48,7 @@ else:
 
 SID=os.environ['SINGULARITY_IMAGE_DIR']
 FREESURFER_HOME=os.environ['FREESURFER_HOME']
-ANACONDA_HOME = "/home/apps//ubuntu-22.04/anaconda3/ssl/"
+
 if os.path.exists(SID):
 	pass
 else:
@@ -67,7 +67,7 @@ else:
 ## It seems that it was a mistake to include '--bind /home/apps:/home/apps'...that would then call our messed up fsl/python configurations
 ## instead of the containerized versions; removing that option	
 fmri_command = f'singularity exec --cleanenv -B /mnt/newStor:/mnt/newStor -B {FREESURFER_HOME}/license.txt:/opt/freesurfer/license.txt {SID}/fmriprep-v25.0.0.sif fmriprep'
-# May need this: -B {ANACONDA_HOME}:{ANACONDA_HOME} 
+# May need this: ANACONDA_HOME = "/home/apps//ubuntu-22.04/anaconda3/ssl/"; and this in the singularity call: -B {ANACONDA_HOME}:{ANACONDA_HOME} (working fine without it for now)
 
 subj = (sys.argv[1])
 clean_subj = subj.replace('_',"")

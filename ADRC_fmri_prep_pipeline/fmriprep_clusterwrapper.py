@@ -81,9 +81,11 @@ for subj in list_of_subjs:
         ## on account of using a later version of fmriprep...no longer have 'ingstate_run-01'
         ## as part of the file name.
         #output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz')
-        output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
-        print(output_file_name)
-        if os.path.exists(output_file_name):
+        output_file_name_1 = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
+        # We found out that it can produce the above results, even with critical failures...check for confounds as well:
+        output_file_name_2 = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_desc-confounds_timeseries.tsv')
+       
+        if os.path.exists(output_file_name_1) and os.path.exists(output_file_name_2):
             print(f'Already did subject {subj}')
             continue
     python_command = "python3 " + code_folder + "/fmri_prep.py " + subj
