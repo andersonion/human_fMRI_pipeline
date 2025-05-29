@@ -61,6 +61,10 @@ if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
 	
+use_cluster = True
+if len(sys.argv) > 2 and not sys.argv[2]:
+	use_cluster = False
+	
 	
 if run_code:
 	# Make sure important paths exist and are set:
@@ -143,6 +147,11 @@ if run_code:
 		
 		# If the gunnies folder is up to date, either the sge or slurm submit script can be used,
 		# regardless of which cluster you be on.
-		command = GD + "submit_sge_cluster_job.bash " + sbatch_folder_path + " "+ job_name + " 0 0 '"+ python_command+"'"   
+		
+		if use_cluster:
+			command = GD + "submit_sge_cluster_job.bash " + sbatch_folder_path + " "+ job_name + " 0 0 '"+ python_command+"'"
+		else:
+			command = python_command
+			
 		os.system(command)
 		print(f'Launched subject {subj}')
