@@ -111,7 +111,7 @@ if run_code:
 		root_proj = '/mnt/munin2/Badea/Lab/human/ADRC/'
 	
 	# I currently do not know what results for which I should be checking...
-	checker = False	
+	checker = True	
 	
 	current_file_path = os.path.abspath(__file__)
 	code_folder = os.path.dirname(current_file_path)
@@ -129,6 +129,8 @@ if run_code:
 	list_of_subjs = sorted(list_of_subjs_long)
 	subjects = list_of_subjs
 	
+	outpathfolder = f"{BD}/{project}/connectomes/functional_conn
+	
 	for subj in subjects:
 		subj_strip = subj.replace('sub-',"")
 		subj_temp = subj_strip
@@ -140,7 +142,7 @@ if run_code:
 			## on account of using a later version of fmriprep...no longer have 'ingstate_run-01'
 			## as part of the file name.
 			#output_file_name = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-restingstate_run-01_space-T1w_desc-preproc_bold.nii.gz')
-			output_file_name = os.path.join(outpathfolder,f'sub-{subj_strip}','func',f'sub-{subj_strip}_task-rest_space-T1w_desc-preproc_bold.nii.gz')
+			output_file_name = os.path.join(outpathfolder,f'func_connectome_corr_{subj_temp}.csv')
 			print(output_file_name)
 			if os.path.exists(output_file_name):
 				print(f'Already did subject {subj_temp}')
