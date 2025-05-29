@@ -62,8 +62,10 @@ if project == '':
 	project = default_project
 	
 use_cluster = True
-if len(sys.argv) > 2 and not sys.argv[2]:
+if len(sys.argv) > 2:
+	if not sys.argv[2]:
 	use_cluster = False
+	print("You have chosen to not take advantage of the power of the HPC resources, running 'locally'...")
 	
 	
 if run_code:
