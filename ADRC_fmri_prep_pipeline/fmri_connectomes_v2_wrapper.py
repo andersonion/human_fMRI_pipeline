@@ -129,7 +129,7 @@ if run_code:
 	list_of_subjs = sorted(list_of_subjs_long)
 	subjects = list_of_subjs
 	
-	outpathfolder = f"{BD}/{project}/connectomes/functional_conn
+	outpathfolder = f"{BD}/{project}/connectomes/functional_conn"
 	
 	for subj in subjects:
 		subj_strip = subj.replace('sub-',"")
