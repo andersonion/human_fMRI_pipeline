@@ -64,7 +64,7 @@ else:
 #fmri_command = f'singularity exec --bind /mnt/newStor:/mnt/newStor --bind /home/apps:/home/apps {SID}/fmriprep-v25.0.0.sif fmriprep'
 ## It seems that it was a mistake to include '--bind /home/apps:/home/apps'...that would then call our messed up fsl/python configurations
 ## instead of the containerized versions; removing that option	
-fmri_command = f'singularity exec --B /mnt/newStor:/mnt/newStor --B /home/apps/freesurfer/license.txt:/home/apps/freesurfer/license.txt --B /home/apps//ubuntu-22.04/anaconda3/ssl/:/home/apps//ubuntu-22.04/anaconda3/ssl/ {SID}/fmriprep-v25.0.0.sif fmriprep'
+fmri_command = f'singularity exec -B /mnt/newStor:/mnt/newStor -B /home/apps/freesurfer/license.txt:/home/apps/freesurfer/license.txt -B /home/apps//ubuntu-22.04/anaconda3/ssl/:/home/apps//ubuntu-22.04/anaconda3/ssl/ {SID}/fmriprep-v25.0.0.sif fmriprep'
 subj = (sys.argv[1])
 clean_subj = subj.replace('_',"")
 
