@@ -34,6 +34,7 @@ if conda_env != env_path:
 	arguments = ""
 	if len(sys.argv) > 1:
 		arguments = sys.argv[1:]
+		arguments = ' '.join(arguments)
 		print(f"Arguments: {arguments}")
 	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {arguments}"
 	print("Setup command:")
