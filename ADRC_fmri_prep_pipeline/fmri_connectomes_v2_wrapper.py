@@ -31,7 +31,13 @@ run_code = True
 if conda_env != env_path:
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	run_code = False
-	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path}"
+	arguments = ""
+	if len(sys.argv) > 1:
+		arguments = sys.arg[1:]
+		print(f"Arguments: {arguments}")
+	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {arguments}"
+	print("Setup command:")
+	print(setup_cmd)
 	subprocess.run(setup_cmd, shell=True, check=True)
 
 import numpy as np
