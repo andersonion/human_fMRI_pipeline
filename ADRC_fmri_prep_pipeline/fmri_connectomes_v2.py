@@ -41,6 +41,7 @@ if conda_env != env_path:
 import numpy as np
 import nibabel as nib
 import pandas as pd
+import nilearn
 from nibabel.processing import resample_to_output
 from nilearn.input_data import NiftiLabelsMasker
 from nilearn.interfaces.fmriprep import load_confounds
