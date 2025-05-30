@@ -41,7 +41,6 @@ if conda_env != env_path:
 import numpy as np
 import nibabel as nib
 import pandas as pd
-import nilearn
 from nibabel.processing import resample_to_output
 from nilearn.input_data import NiftiLabelsMasker
 from nilearn.interfaces.fmriprep import load_confounds
@@ -184,7 +183,7 @@ if run_code:
 
 	import shutil;
 	print(shutil.which("python"))
-	print(subprocess.getoutput("python -m pip list | grep nilearn"))
+	print("nilearn test = " + subprocess.getoutput("python -m pip list | grep nilearn 2>/dev/null | wc -l"))
 
 
 
