@@ -31,12 +31,16 @@ env_path = subprocess.check_output(
     text=True
 ).strip()
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
+print(f"Current conda env: {conda_env}")
+
 run_code = True
 if conda_env != env_path:
 	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
 	run_code = False
 	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {subj} {project}"
 	subprocess.run(setup_cmd, shell=True, check=True)
+
+print("nilearn test = " + subprocess.getoutput("python -m pip list | grep nilearn 2>/dev/null | wc -l"))
 
 import numpy as np
 import nibabel as nib
