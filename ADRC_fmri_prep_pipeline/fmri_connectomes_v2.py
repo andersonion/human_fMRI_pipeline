@@ -4,9 +4,18 @@ import os, socket, sys, glob, subprocess
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-import shutil;
-print(shutil.which("python"))
+import os
+import sys
+import subprocess
+
+print(">>> CONDA ENV DEBUGGING")
+print("CONDA_DEFAULT_ENV:", os.environ.get("CONDA_DEFAULT_ENV"))
+print("sys.executable:", sys.executable)
+print("which python:", subprocess.getoutput("which python"))
+print("which pip:", subprocess.getoutput("which pip"))
+print("python -m pip list | grep nilearn:")
 print(subprocess.getoutput("python -m pip list | grep nilearn"))
+
 
 # Change as needed:
 default_project = "ADNI"
