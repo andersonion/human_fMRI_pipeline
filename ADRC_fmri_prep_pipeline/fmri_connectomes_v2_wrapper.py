@@ -33,7 +33,7 @@ if conda_env != env_path:
 	run_code = False
 	arguments = ""
 	if len(sys.argv) > 1:
-		arguments = sys.arg[1:]
+		arguments = sys.argv[1:]
 		print(f"Arguments: {arguments}")
 	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {arguments}"
 	print("Setup command:")
