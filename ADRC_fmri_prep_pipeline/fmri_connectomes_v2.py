@@ -8,6 +8,18 @@ import os
 import sys
 import subprocess
 
+env_path = subprocess.check_output(
+    "conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s ' '",
+    shell=True,
+    text=True
+).strip()
+conda_env = os.environ.get("CONDA_DEFAULT_ENV")
+print(f"Current conda env: {conda_env}")
+
+correct_python = f"{script_dir}/fmri_connectomes/bin/python"
+current_python = subprocess.getoutput("which python")
+
+
 print(">>> CONDA ENV DEBUGGING")
 print("CONDA_DEFAULT_ENV:", os.environ.get("CONDA_DEFAULT_ENV"))
 print("sys.executable:", sys.executable)
@@ -16,6 +28,7 @@ print("which pip:", subprocess.getoutput("which pip"))
 print("python -m pip list | grep nilearn:")
 print(subprocess.getoutput("python -m pip list | grep nilearn"))
 
+if 
 
 # Change as needed:
 default_project = "ADNI"
@@ -33,7 +46,7 @@ if len(sys.argv) > 2:
 if project == '':
 	print(f"No project specified; using default project: {default_project}")
 	project = default_project
-
+"""
 env_path = subprocess.check_output(
     "conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s ' '",
     shell=True,
@@ -41,11 +54,19 @@ env_path = subprocess.check_output(
 ).strip()
 conda_env = os.environ.get("CONDA_DEFAULT_ENV")
 print(f"Current conda env: {conda_env}")
-
+"""
 run_code = True
+activate_env = False
 if conda_env != env_path:
-	print(f"Conda environment 'fmri_connectomes' not activated; running setup/activate script now...")
+	print(f"Conda environment 'fmri_connectomes' not activated;") 
+	activate_env = True
+if current_python != correct_python:
+	print(f"Improper python is in use;") 
+	activate_env = True	
+	
+if activate_env:
 	run_code = False
+	print("running setup/activate script now...")
 	setup_cmd = f"bash {script_dir}/setup_fmri_connectomes_conda_env.bash {script_path} {subj} {project}"
 	subprocess.run(setup_cmd, shell=True, check=True)
 

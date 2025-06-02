@@ -23,6 +23,37 @@ if [[ ${mother_script} ]];then
 	fi
 fi
 
+# Whitelist the vars you want to retain
+WHITELIST_VARS=(
+  HOME
+  USER
+  LOGNAME
+  TERM
+  TMPDIR
+  SLURM_JOB_ID
+  SLURM_JOB_NODELIST
+  SLURM_TMPDIR
+  WORK
+  GUNNIES
+  BIGGUS_DISKUS
+)
+
+# Build a clean environment declaration
+ENV_DECL=""
+for var in "${WHITELIST_VARS[@]}"; do
+    val="${!var}"
+    if [[ -n "$val" ]]; then
+        ENV_DECL+=" $var=\"$val\""
+    fi
+done
+
+# Prepend a safe base PATH
+ENV_DECL+=" PATH=/usr/bin:/bin"
+
+# Run the command in a clean shell
+eval env -i $ENV_DECL bash --noprofile --norc <<EOF
+
+
 echo "DEBUG TESTING:"
 fsl_vars=$(env | grep -E 'FSL' | cut -d '=' -f1)
 echo "fsl_vars = ${fsl_vars}"
@@ -103,3 +134,4 @@ else
 	fi
 	exit 1
 fi
+EOF
