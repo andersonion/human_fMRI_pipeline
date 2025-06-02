@@ -54,14 +54,19 @@ fi
 
 conda_path=$(which conda 2>/dev/null)
 
-if [ -n "$conda_path" ]; then
-    conda_sh_path="$(dirname "$conda_path")/../etc/profile.d/conda.sh"
-    conda_sh_path="$(realpath "$conda_sh_path")"
-    echo "conda.sh is located at: $conda_sh_path"
-    source "$conda_sh_path"
-
+if [ -n "$CONDA_EXE" ]; then
+	conda_sh="$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
+	conda_sh="$(realpath "$conda_sh")"
+    if [ -e ${conda_sh_path} ];then
+    	echo "conda.sh is located at: $conda_sh_path"
+    	source "$conda_sh_path"
+	else
+		echo "conda.sh was assume to be at: $conda_sh_path"
+		echo "But that appears not to exist."
+		echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
+	fi
 else
-    echo "conda command not found."
+    echo "CONDA_EXE not found. Thusly..."
     echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
 fi
 
