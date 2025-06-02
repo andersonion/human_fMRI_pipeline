@@ -55,7 +55,7 @@ ENV_DECL+=" PATH=/usr/bin:/bin"
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<EOF
 
-
+env
 echo "DEBUG TESTING:"
 fsl_vars=$(env | grep -E 'FSL' | cut -d '=' -f1)
 echo "fsl_vars = ${fsl_vars}"
