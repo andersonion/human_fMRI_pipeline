@@ -38,6 +38,7 @@ WHITELIST_VARS=(
   WORK
   GUNNIES
   BIGGUS_DISKUS
+  PATH
 )
 
 # Build a clean environment declaration
