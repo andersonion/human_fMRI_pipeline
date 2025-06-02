@@ -3,6 +3,7 @@
 mother_script=$1
 oms=${mother_script}
 ms_prefix='';
+shift
 all_args=$@;
 
 if [[ "x${mother_script}x" != "xx" && ! -e ${mother_script} ]];then
