@@ -23,6 +23,11 @@ if [[ ${mother_script} ]];then
 	fi
 fi
 
+echo "DEBUG TESTING:"
+env | grep -E 'PYTHON|LD_PRELOAD|FSL'
+
+
+
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
 	echo "Conda environment 'fmri_connectomes' does not appear to exist; configuring now..."
@@ -68,10 +73,6 @@ else
     echo "CONDA_EXE not found. Thusly..."
     echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
 fi
-
-echo "DEBUG TESTING:"
-env | grep -E 'PYTHON|LD_PRELOAD|FSL'
-
 
 # Test and run mother script if needed:
 
