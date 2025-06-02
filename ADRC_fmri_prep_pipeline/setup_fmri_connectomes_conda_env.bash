@@ -49,12 +49,12 @@ for var in "${WHITELIST_VARS[@]}"; do
         ENV_DECL+=" $var=\"$val\""
     fi
 done
-echo  "${WHITELIST_VARS[@]}"
+
 # Prepend a safe base PATH
 printf "%s\n" "${WHITELIST_VARS[@]}" | grep -Fxq "PATH"
 p_test=$?  # 0 if found, 1 if not
-echo "p_test = x${p_test}x"
-if [[ ${p_test} ]];then
+
+if ((${p_test}));then
 	ENV_DECL+=" PATH=/usr/bin:/bin"
 fi
 # Run the command in a clean shell
