@@ -25,10 +25,13 @@ fi
 
 echo "DEBUG TESTING:"
 fsl_vars = $(env | grep -E 'FSL')
-for var in $fsl_vars;do
-	echo "Unsetting ${var}"
-	unset $var;
-done
+echo "fsl_vars = ${fsl_vars}"
+if [[ -n ${fsl_vars} ]];then
+	for var in $fsl_vars;do
+		echo "Unsetting ${var}"
+		unset $var;
+	done
+fi
 
 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
