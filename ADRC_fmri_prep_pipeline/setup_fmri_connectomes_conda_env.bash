@@ -24,7 +24,7 @@ if [[ ${mother_script} ]];then
 fi
 
 echo "DEBUG TESTING:"
-fsl_vars=$(env | grep -E 'FSL')
+fsl_vars=$(env | grep -E 'FSL' | grep -d '=' -f1)
 echo "fsl_vars = ${fsl_vars}"
 if [[ -n ${fsl_vars} ]];then
 	for var in $fsl_vars;do
