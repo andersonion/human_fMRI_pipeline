@@ -24,8 +24,11 @@ if [[ ${mother_script} ]];then
 fi
 
 echo "DEBUG TESTING:"
-env | grep -E 'PYTHON|LD_PRELOAD|FSL'
-
+fsl_vars = $(env | grep -E 'FSL')
+for var in fsl_vars;do
+	echo "Unsetting ${var}"
+	unset $var;
+done
 
 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
