@@ -51,7 +51,7 @@ for var in "${WHITELIST_VARS[@]}"; do
 done
 
 # Prepend a safe base PATH
-p_test=$(printf "%s\n" "${my_array[@]}" | grep -Fxq "$needle")
+p_test=$(printf "%s\n" "${WHITELIST_VARS[@]}" | grep -Fxq "PATH")
 echo "p_test = ${p_test}"
 if [[ ! ${p_test} ]];then
 	ENV_DECL+=" PATH=/usr/bin:/bin"
