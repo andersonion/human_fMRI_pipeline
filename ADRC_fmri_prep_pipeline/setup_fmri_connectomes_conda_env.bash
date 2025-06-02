@@ -57,7 +57,7 @@ if ((! ${active_conda_env_test} ));then
 		echo "conda not found in PATH"
 		exit 1
 	fi
-	env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
+	env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -d [:space:]);
 	conda activate ${env_path};
 fi
 
