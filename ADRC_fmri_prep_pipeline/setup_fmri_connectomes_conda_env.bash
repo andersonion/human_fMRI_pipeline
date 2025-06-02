@@ -54,8 +54,8 @@ fi
 
 if [ -n "$CONDA_EXE" ]; then
 	echo "CONDA_EXE = ${CONDA_EXE}"
-	conda_sh="$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
-	conda_sh="$(realpath "$conda_sh")"
+	conda_sh_path="$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
+	conda_sh_path="$(realpath "$conda_sh_path")"
     if [ -e ${conda_sh_path} ];then
     	echo "conda.sh is located at: $conda_sh_path"
     	source "$conda_sh_path"
