@@ -54,18 +54,7 @@ ENV_DECL+=" PATH=/usr/bin:/bin"
 
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<EOF
-
-env | grep -E 'FSL' | cut -d '=' -f1
 echo "DEBUG TESTING:"
-fsl_vars=$(env | grep -E 'FSL' | cut -d '=' -f1)
-echo "fsl_vars = ${fsl_vars}"
-if [[ -n ${fsl_vars} ]];then
-	for var in $fsl_vars;do
-		echo "Unsetting ${var}"
-		unset $var;
-	done
-fi
-
 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
