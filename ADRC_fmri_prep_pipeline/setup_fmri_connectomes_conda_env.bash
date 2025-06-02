@@ -52,8 +52,6 @@ fi
 
 # Its critical to find and source the conda.sh file (from ChatGPT):
 
-conda_path=$(which conda 2>/dev/null)
-
 if [ -n "$CONDA_EXE" ]; then
 	conda_sh="$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
 	conda_sh="$(realpath "$conda_sh")"
@@ -61,7 +59,7 @@ if [ -n "$CONDA_EXE" ]; then
     	echo "conda.sh is located at: $conda_sh_path"
     	source "$conda_sh_path"
 	else
-		echo "conda.sh was assume to be at: $conda_sh_path"
+		echo "conda.sh was assumed to be at: $conda_sh_path"
 		echo "But that appears not to exist."
 		echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
 	fi
