@@ -25,7 +25,7 @@ fi
 
 echo "DEBUG TESTING:"
 fsl_vars = $(env | grep -E 'FSL')
-for var in fsl_vars;do
+for var in $fsl_vars;do
 	echo "Unsetting ${var}"
 	unset $var;
 done
