@@ -28,8 +28,6 @@ print("which pip:", subprocess.getoutput("which pip"))
 print("python -m pip list | grep nilearn:")
 print(subprocess.getoutput("python -m pip list | grep nilearn"))
 
-if 
-
 # Change as needed:
 default_project = "ADNI"
 
