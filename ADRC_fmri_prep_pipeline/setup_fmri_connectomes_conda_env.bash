@@ -69,6 +69,8 @@ else
     echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
 fi
 
+echo "DEBUG TESTING:"
+env | grep -E 'PYTHON|LD_PRELOAD|FSL'
 
 
 # Test and run mother script if needed:
