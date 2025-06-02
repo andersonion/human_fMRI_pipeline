@@ -55,7 +55,7 @@ ENV_DECL+=" PATH=/usr/bin:/bin"
 
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<EOF
-echo "DEBUG TESTING:"
+'echo "DEBUG TESTING:"
 echo $PATH
 conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
@@ -126,5 +126,5 @@ else
 		echo "WILL NOT rerun mother script: ${mother_script}..."
 	fi
 	exit 1
-fi
+fi'
 EOF
