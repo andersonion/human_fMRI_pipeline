@@ -3,6 +3,8 @@
 mother_script=$1
 oms=${mother_script}
 ms_prefix='';
+all_args=@;
+
 if [[ "x${mother_script}x" != "xx" && ! -e ${mother_script} ]];then
 	mother_script=${PWD}/${mother_script};
 	ms_prefix="${PWD}/";
@@ -123,7 +125,7 @@ if (( ${conda_test} && ${active_conda_env_test} ));then
 		echo "Full command:"
 		env_path=$(conda info --envs | grep fmri_connectomes | head -1 | tr -d '*' | tr -s [:space:]);
 		shift
-		full_cmd="conda run -p ${env_path} python3 ${mother_script} ${@}"
+		full_cmd="conda run -p ${env_path} python3 ${mother_script} ${all_args}"
 		echo "${full_cmd}"
 		${full_cmd};
 	fi
