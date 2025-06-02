@@ -56,7 +56,7 @@ ENV_DECL+=" PATH=/usr/bin:/bin"
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<EOF
 echo "DEBUG TESTING:"
-
+env 
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
 	echo "Conda environment 'fmri_connectomes' does not appear to exist; configuring now..."
