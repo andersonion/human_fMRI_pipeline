@@ -52,7 +52,8 @@ done
 
 # Prepend a safe base PATH
 p_test=$(printf "%s\n" "${my_array[@]}" | grep -Fxq "$needle")
-if ((! ${p_test}));then
+echo "p_test = ${p_test}"
+if [[ ! ${p_test} ]];then
 	ENV_DECL+=" PATH=/usr/bin:/bin"
 fi
 # Run the command in a clean shell
