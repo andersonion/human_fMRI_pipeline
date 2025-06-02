@@ -52,7 +52,7 @@ done
 
 # Prepend a safe base PATH
 p_test=$(printf "%s\n" "${WHITELIST_VARS[@]}" | grep -Fxq "PATH")
-echo "p_test = ${p_test}"
+echo "p_test = x${p_test}x"
 if [[ ! ${p_test} ]];then
 	ENV_DECL+=" PATH=/usr/bin:/bin"
 fi
