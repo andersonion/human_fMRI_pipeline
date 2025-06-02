@@ -51,8 +51,10 @@ for var in "${WHITELIST_VARS[@]}"; do
 done
 
 # Prepend a safe base PATH
-ENV_DECL+=" PATH=/usr/bin:/bin"
-
+p_test=$(printf "%s\n" "${my_array[@]}" | grep -Fxq "$needle")
+if ((! ${p_test}));then
+	ENV_DECL+=" PATH=/usr/bin:/bin"
+fi
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<'EOF'
 echo "DEBUG TESTING:"
