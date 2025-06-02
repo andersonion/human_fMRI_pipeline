@@ -53,6 +53,7 @@ fi
 # Its critical to find and source the conda.sh file (from ChatGPT):
 
 if [ -n "$CONDA_EXE" ]; then
+	echo "CONDA_EXE = ${CONDA_EXE}"
 	conda_sh="$(dirname "$CONDA_EXE")/../etc/profile.d/conda.sh"
 	conda_sh="$(realpath "$conda_sh")"
     if [ -e ${conda_sh_path} ];then
