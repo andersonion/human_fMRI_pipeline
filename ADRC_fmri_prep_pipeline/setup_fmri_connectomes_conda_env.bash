@@ -39,6 +39,8 @@ WHITELIST_VARS=(
   GUNNIES
   BIGGUS_DISKUS
   PATH
+  mother_script
+  all_args
 )
 
 # Build a clean environment declaration
@@ -59,8 +61,8 @@ if ((${p_test}));then
 fi
 # Run the command in a clean shell
 eval env -i $ENV_DECL bash --noprofile --norc <<'EOF'
-echo "DEBUG TESTING:"
-echo $PATH
+#echo "DEBUG TESTING:"
+#echo $PATH
 conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 if ((! ${conda_test} ));then
