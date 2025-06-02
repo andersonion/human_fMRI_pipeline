@@ -50,6 +50,25 @@ if ((! ${active_conda_env_test} ));then
 	conda activate ${env_path};
 fi
 
+# Its critical to find and source the conda.sh file (from ChatGPT):
+
+conda_path=$(which conda 2>/dev/null)
+
+if [ -n "$conda_path" ]; then
+    conda_sh_path="$(dirname "$conda_path")/../etc/profile.d/conda.sh"
+    conda_sh_path="$(realpath "$conda_sh_path")"
+    echo "conda.sh is located at: $conda_sh_path"
+    source "$conda_sh_path"
+
+else
+    echo "conda command not found."
+    echo "conda.sh not found and CANNOT be sourced; EXPECT DUMB FAILURES"
+fi
+
+
+
+# Test and run mother script if needed:
+
 conda_test=$(conda info --envs | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 active_conda_env_test=$(conda info --envs | grep '*' | grep '/fmri_connectomes' 2>/dev/null | wc -l);
 
