@@ -97,9 +97,16 @@ for subj in list_of_subjs:
         # We found out that it can produce the above results, even with critical failures...check for confounds as well:
         output_file_name_2 = os.path.join(outpathfolder,f'sub-{subj}','func',f'sub-{subj}_task-rest_desc-confounds_timeseries.tsv')
        
+       T1_file_name = os.path.join(outpathfolder,f'sub-{subj}','anat',f'sub-{subj}_T1w.nii.gz')
+       
         if os.path.exists(output_file_name_1) and os.path.exists(output_file_name_2):
             print(f'Already did subject {subj}')
             continue
+        
+        if not os.path.exists(T1_file_name_1):
+            print(f'Skipping: T1w missing for subject: {subj}')
+            continue
+            
     python_command = "python3 " + code_folder + "/fmri_prep.py " + subj
     job_name = job_descrp + "_"+ subj
     
