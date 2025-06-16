@@ -103,7 +103,7 @@ for subj in list_of_subjs:
             print(f'Already did subject {subj}')
             continue
         
-        if not os.path.exists(T1_file_name_1):
+        if not os.path.exists(T1_file_name):
             print(f'Skipping: T1w missing for subject: {subj}')
             continue
             
