@@ -9,6 +9,7 @@ Created on Fri Nov  3 11:54:06 2023
 # Change as needed:
 default_project = "HABS"
 
+import os, sys, glob, pathlib
 
 # Make sure important paths exist and are set:
 try :
