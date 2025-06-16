@@ -18,6 +18,21 @@ import os , glob
 import sys
 #import nibabel as nib
 
+# Generalizing for any human project
+# Change as needed:
+default_project = "HABS"
+
+import os, sys, glob, pathlib
+
+project = ''
+if len(sys.argv) > 1:
+	project = (sys.argv[1])
+
+
+if project == '':
+	print(f"No project specified; using default project: {default_project}")
+	project = default_project
+
 
 # Make sure important paths exist and are set:
 try :
@@ -46,9 +61,6 @@ else:
 
 current_file_path = os.path.abspath(__file__)
 code_folder = os.path.dirname(current_file_path)
-    
-# Make this code reusable for other projects    
-project = "ADNI"
 
 #create sbatch folder
 job_descrp =  "fmri_coreg"
