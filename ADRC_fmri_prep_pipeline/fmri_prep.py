@@ -11,6 +11,17 @@ default_project = "HABS"
 
 import os, sys, glob, pathlib
 
+subj = (sys.argv[1])
+clean_subj = subj.replace('_',"")
+
+project = ''
+if len(sys.argv) > 2:
+	project = (sys.argv[2])
+
+
+if project == '':
+	print(f"No project specified; using default project: {default_project}")
+	project = default_project
 # Make sure important paths exist and are set:
 try :
     BD = os.environ['BIGGUS_DISKUS']
@@ -69,23 +80,6 @@ else:
 ## instead of the containerized versions; removing that option	
 fmri_command = f'singularity exec --cleanenv -B /mnt/newStor:/mnt/newStor -B {FREESURFER_HOME}/license.txt:/opt/freesurfer/license.txt {SID}/fmriprep-v25.0.0.sif fmriprep'
 # May need this: ANACONDA_HOME = "/home/apps//ubuntu-22.04/anaconda3/ssl/"; and this in the singularity call: -B {ANACONDA_HOME}:{ANACONDA_HOME} (working fine without it for now)
-
-subj = (sys.argv[1])
-clean_subj = subj.replace('_',"")
-
-
-project = ''
-if len(sys.argv) > 2:
-	project = (sys.argv[2])
-
-
-if project == '':
-	print(f"No project specified; using default project: {default_project}")
-	project = default_project
-import os, sys, glob, pathlib
-
-
-
 
 output_BIDS = os.path.join(root_proj,f"{project}_BIDS/")
 fmriprep_output = os.path.join(root_proj,'fmriprep_output')
