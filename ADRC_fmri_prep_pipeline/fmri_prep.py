@@ -6,8 +6,17 @@ Created on Fri Nov  3 11:54:06 2023
 @author: ali
 """
 # Generalizing for any human project
-project='ADNI'
+# Change as needed:
+default_project = "HABS"
 
+project = ''
+if len(sys.argv) > 2:
+	project = (sys.argv[2])
+
+
+if project == '':
+	print(f"No project specified; using default project: {default_project}")
+	project = default_project
 import os, sys, glob, pathlib
 
 # Make sure important paths exist and are set:
