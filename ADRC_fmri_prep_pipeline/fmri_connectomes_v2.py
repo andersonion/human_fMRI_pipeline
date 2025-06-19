@@ -292,6 +292,7 @@ if run_code:
 	if '_y' not in subj_temp:
 		subj_temp = subj_temp.replace('y','_y')
 
+	mkcdir(conn_path)
 	mkcdir(func_conn_path)
 	fmri_nii=nib.load(fmri_path)
 
