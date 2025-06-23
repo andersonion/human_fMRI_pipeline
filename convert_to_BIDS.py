@@ -57,15 +57,35 @@ func_folder = os.path.join(output_path,f'sub-{subj}/func')
 
 mkcdir([subj_folder,anat_folder,func_folder],None)
 
+
+# Cheez_it: In theory, if there is not expected to be huge morphological differences between visits,
+# then we should be able to well approximate a missing T1 with any T1 from that subject.
+# cheez_it = True will look for any T1 for that subject and use it instead of the missing T1
+# Note: we are assuming that the inputs are most likely in one large pool.
+
+cheez_it = True
+
 # Hey you! Change this as needed for your data.
 t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with your file
+
+if not os.path.exists(t1_path_orig):
+	if cheez_it:
+		pattern = re.sub(r'_y\?', '_y?', t1_path_orig)
+		matches = glob.glob(pattern)
+		if matches:
+			print(f"{t1_path_orig} does not exist;")
+			t1_path_orig = matches[0]
+			print(f"Using {t1_path_orig} instead;")
+		# The implied else here is that we'll keep the original name and just let it fail.
+
+
 t1_json_path_orig = t1_path_orig.replace(".nii.gz", ".json")
 
 # BIDS standards -- Do not change
 t1_nii_path = os.path.join(anat_folder,f'sub-{subj}_T1w.nii.gz')
 t1_json_path = t1_nii_path.replace(".nii.gz", ".json")
 
-if not os.path.exists(t1_nii_path):
+if os.path.exists(t1_path_orig) and not os.path.exists(t1_nii_path):
     shutil.copy(t1_path_orig,t1_nii_path)
 
 if os.path.exists(t1_json_path_orig) and not os.path.exists(t1_json_path):
@@ -91,7 +111,7 @@ func_nii_path = os.path.join(func_folder,f'sub-{subj}_task-rest_bold.nii.gz')
 func_json_path = func_nii_path.replace(".nii.gz", ".json")
 
 
-if not os.path.exists(func_nii_path):
+if os.path.exists(func_path_orig) and not os.path.exists(func_nii_path):
     shutil.copy(func_path_orig,func_nii_path)
     
 if os.path.exists(func_json_path_orig) and not os.path.exists(func_json_path):
