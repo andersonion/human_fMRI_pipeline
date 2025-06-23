@@ -72,7 +72,9 @@ if not os.path.exists(t1_path_orig):
 	print(f"{t1_path_orig} does not exist;")
 	if cheez_it:
 		pattern = re.sub(r'_y\?', '_y?', t1_path_orig)
+		print(f"pattern = {pattern}")
 		matches = glob.glob(pattern)
+		print(f"matches = {matches}")
 		if matches:
 			t1_path_orig = matches[0]
 			print(f"Using {t1_path_orig} instead;")
@@ -105,7 +107,7 @@ if os.path.exists(t1_nii_path) and not os.path.exists(t1_json_path):
 
 func_path_orig = os.path.join(orig_path,f'{o_subj}_fMRI_nii4D.nii.gz')  # change this with your file
 func_json_path_orig = func_path_orig.replace(".nii.gz", ".json")
-print(func_json_path_orig)
+#print(func_json_path_orig)
 # BIDS standards -- Do not change
 func_nii_path = os.path.join(func_folder,f'sub-{subj}_task-rest_bold.nii.gz')
 func_json_path = func_nii_path.replace(".nii.gz", ".json")
