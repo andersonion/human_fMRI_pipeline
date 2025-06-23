@@ -71,7 +71,7 @@ t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with
 if not os.path.exists(t1_path_orig):
 	print(f"{t1_path_orig} does not exist;")
 	if cheez_it:
-		pattern = re.sub(r'_y\?', '_y?', t1_path_orig)
+		pattern = re.sub(r'_y\d', '_y?', t1_path_orig)
 		print(f"pattern = {pattern}")
 		matches = glob.glob(pattern)
 		print(f"matches = {matches}")
