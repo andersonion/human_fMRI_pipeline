@@ -69,11 +69,11 @@ cheez_it = True
 t1_path_orig = os.path.join(orig_path,f'{o_subj}_T1.nii.gz')  # change this with your file
 
 if not os.path.exists(t1_path_orig):
+	print(f"{t1_path_orig} does not exist;")
 	if cheez_it:
 		pattern = re.sub(r'_y\?', '_y?', t1_path_orig)
 		matches = glob.glob(pattern)
 		if matches:
-			print(f"{t1_path_orig} does not exist;")
 			t1_path_orig = matches[0]
 			print(f"Using {t1_path_orig} instead;")
 		# The implied else here is that we'll keep the original name and just let it fail.
