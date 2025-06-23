@@ -5,7 +5,7 @@
 # Second argument is the output path.
 # There is some code that will need to be modified for your specific data structure
 
-import json, os, shutil, sys, re
+import json, os, shutil, sys, re, glob
 import SimpleITK as sitk
 
 orig_path = sys.argv[1]
