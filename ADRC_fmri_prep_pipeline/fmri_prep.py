@@ -88,8 +88,12 @@ work_dir = os.path.join(root_proj,'work_dir')
 
 print(f'output_BIDS = {output_BIDS} ')
 print(f'fmriprep_output = {fmriprep_output} ')
-
+no_recon = "";
+if "Flair" in subj.lower():
+	no_recon = '--fs-no-reconall '
+	
 command = f' {fmri_command} {output_BIDS} {fmriprep_output} ' \
+	f'{no_recon}' \
     f'participant --participant-label {clean_subj} -w {work_dir} --nthreads 20 ' \
     f'--output-spaces T1w  --fs-license-file /opt/freesurfer/license.txt'
 os.system(command)
