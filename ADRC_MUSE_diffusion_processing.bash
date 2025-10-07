@@ -14,6 +14,9 @@ for id in $(ls -d *);do
 	cmd="bash ${GUNNIES}/human_diffusion_preprocessing_MRtrix.bash ${id} ${raw_nii_folder}";
 	job_name=${id}_diffusion_processing;
 	sub_cmd="${sub_script} ${sbatch_dir} ${job_name} 0 0 ${cmd}";
-	$sub_cmd;
+	test_output=${WORK}/human/diffusion_prep_MRtrix_${id}/${id}_sift_mu.txt;
+	if [[ ! -f ${test_output} ]];then
+		$sub_cmd;
+	fi
 done
 	
