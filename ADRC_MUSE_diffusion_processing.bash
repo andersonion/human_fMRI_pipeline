@@ -9,7 +9,7 @@ cd $tmp_inputs;
 sbatch_dir=${tmp_inputs}/sbatch
 mkdir -p ${sbatch_dir};
 
-for id in $(ls -d *);do
+for id in $(ls -d D*);do
 	raw_nii_folder=${tmp_inputs}/${id};
 	cmd="bash ${GUNNIES}/human_diffusion_preprocessing_MRtrix.bash ${id} ${raw_nii_folder}";
 	job_name=${id}_diffusion_processing;
