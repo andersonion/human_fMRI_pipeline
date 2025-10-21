@@ -1,0 +1,141 @@
+### REQUIRED PARAMETERS ###
+project_name=25.ADRCPublic.01
+optional_external_inputs_dir=/mnt/newStor/paros/paros_WORK/human/ADRC_symlink_pool/
+no_new_inputs=0
+
+control_comma_list=D0007,D0029,D0049,D0050,D0051,D0052,D0053,D0057,D0058,D0059,D0060,D0061,D0062,D0063,D0064,D0065,D0066,D0069,D0070,D0071,D0072,D0073,D0074,D0075,D0076,D0078,D0079,D0080,D0082,D0083,D0084,D0085,D0086,D0087,D0088,D0089,D0090,D0091,D0093,D0094,D0095,D0096,D0097,D0098,D0099,D0100,D0101,D0102,D0103,D0104,D0105,D0106,D0107,D0110,D0111,D0112,D0113,D0114,D0115,D0116,D0117,D0118,D0119,D0120,D0121,D0122,D0123,D0124,D0125,D0126,D0127,D0128,D0129,D0130,D0131,D0132,D0133,D0134,D0135,D0136,D0138,D0139,D0140,D0141,D0142,D0143,D0144,D0145,D0146,D0147,D0148,D0149,D0150,D0151,D0152,D0153,D0155,D0156,D0157,D0158,D0159,D0161,D0162,D0163,D0164,D0165,D0166,D0167,D0168,D0169,D0170,D0172,D0173,D0174,D0175,D0176,D0177,D0178,D0179,D0180,D0183,D0184,D0185,D0186,D0187,D0189,D0190,D0191,D0192,D0194,D0195,D0196,D0197,D0198,D0199,D0200,D0201,D0202,D0203,D0204,D0205,D0206,D0207,D0208,D0209,D0210,D0211,D0212,D0213,D0214,D0215,D0216,D0217,D0218,D0219,D0220,D0221,D0222,D0223,D0225,D0226,D0227,D0228,D0229,D0230,D0231,D0232,D0233,D0234,D0236,D0237,D0238,D0239,D0240,D0241,D0242,D0243,D0244,D0245,D0246,D0247,D0248,D0249,D0250,D0251,D0253,D0254,D0255,D0256,D0257,D0258,D0259,D0261,D0262,D0264,D0265,D0266,D0267,D0268,D0269,D0271,D0272,D0273,D0274,D0275,D0276,D0277,D0278,D0279,D0280,D0281,D0282,D0283,D0284,D0285,D0286,D0287,D0288,D0289,D0290,D0291,D0292,D0293,D0296,D0298,D0299,D0300,D0302,D0303,D0304,D0305,D0306,D0307,D0309,D0310,D0311,D0313,D0314,D0315,D0316,D0317,D0318,D0319,D0320,D0321,D0324,D0325,D0326,D0327,D0328,D0329,D0330,D0331,D0332,D0333,D0334,D0335,D0336,D0337,D0339,D0340,D0341,D0342,D0343,D0344,D0345,D0346,D0347,D0348,D0349,D0351,D0352,D0353,D0354,D0355,D0356,D0357,D0358,D0359,D0360,D0361,D0362,D0364,D0365,D0366,D0367,D0368,D0369,D0370,D0371,D0372,D0373,D0374,D0375,D0376,D0377,D0378,D0381,D0383,D0384,D0385,D0387,D0388,D0389,D0390,D0391,D0392,D0394,D0395,D0397,D0398,D0400,D0401,D0402,D0403,D0404,D0405,D0406,D0407,D0408,D0409,D0410,D0411,D0413,D0414,D0415,D0417,D0418,D0420,D0421,D0422,D0423,D0424,D0429,D0430,D0431,D0432,D0434,D0435,D0437,D0438,D0439,D0443,D0445,D0449,D0454,D0458
+compare_comma_list=D0007,D0029,D0049,D0050,D0051,D0052,D0053,D0057,D0058,D0059,D0060,D0061,D0062,D0063,D0064,D0065,D0066,D0069,D0070,D0071,D0072,D0073,D0074,D0075,D0076,D0078,D0079,D0080,D0082,D0083,D0084,D0085,D0086,D0087,D0088,D0089,D0090,D0091,D0093,D0094,D0095,D0096,D0097,D0098,D0099,D0100,D0101,D0102,D0103,D0104,D0105,D0106,D0107,D0110,D0111,D0112,D0113,D0114,D0115,D0116,D0117,D0118,D0119,D0120,D0121,D0122,D0123,D0124,D0125,D0126,D0127,D0128,D0129,D0130,D0131,D0132,D0133,D0134,D0135,D0136,D0138,D0139,D0140,D0141,D0142,D0143,D0144,D0145,D0146,D0147,D0148,D0149,D0150,D0151,D0152,D0153,D0155,D0156,D0157,D0158,D0159,D0161,D0162,D0163,D0164,D0165,D0166,D0167,D0168,D0169,D0170,D0172,D0173,D0174,D0175,D0176,D0177,D0178,D0179,D0180,D0183,D0184,D0185,D0186,D0187,D0189,D0190,D0191,D0192,D0194,D0195,D0196,D0197,D0198,D0199,D0200,D0201,D0202,D0203,D0204,D0205,D0206,D0207,D0208,D0209,D0210,D0211,D0212,D0213,D0214,D0215,D0216,D0217,D0218,D0219,D0220,D0221,D0222,D0223,D0225,D0226,D0227,D0228,D0229,D0230,D0231,D0232,D0233,D0234,D0236,D0237,D0238,D0239,D0240,D0241,D0242,D0243,D0244,D0245,D0246,D0247,D0248,D0249,D0250,D0251,D0253,D0254,D0255,D0256,D0257,D0258,D0259,D0261,D0262,D0264,D0265,D0266,D0267,D0268,D0269,D0271,D0272,D0273,D0274,D0275,D0276,D0277,D0278,D0279,D0280,D0281,D0282,D0283,D0284,D0285,D0286,D0287,D0288,D0289,D0290,D0291,D0292,D0293,D0296,D0298,D0299,D0300,D0302,D0303,D0304,D0305,D0306,D0307,D0309,D0310,D0311,D0313,D0314,D0315,D0316,D0317,D0318,D0319,D0320,D0321,D0324,D0325,D0326,D0327,D0328,D0329,D0330,D0331,D0332,D0333,D0334,D0335,D0336,D0337,D0339,D0340,D0341,D0342,D0343,D0344,D0345,D0346,D0347,D0348,D0349,D0351,D0352,D0353,D0354,D0355,D0356,D0357,D0358,D0359,D0360,D0361,D0362,D0364,D0365,D0366,D0367,D0368,D0369,D0370,D0371,D0372,D0373,D0374,D0375,D0376,D0377,D0378,D0381,D0383,D0384,D0385,D0387,D0388,D0389,D0390,D0391,D0392,D0394,D0395,D0397,D0398,D0400,D0401,D0402,D0403,D0404,D0405,D0406,D0407,D0408,D0409,D0410,D0411,D0413,D0414,D0415,D0417,D0418,D0420,D0421,D0422,D0423,D0424,D0429,D0430,D0431,D0432,D0434,D0435,D0437,D0438,D0439,D0443,D0445,D0449,D0454,D0458
+## Hint: compare_comma_list should include all runnos that should be independently re-registered to the final MDT once it has been created.
+
+#group_1_runnos=N51211,N51221,N51231,N51383,N51386
+#group_2_runnos=N51136,N51201,N51234,N51241,N51252
+## Hint: group_1_runnos and group_2_runnos should be mutually exclusive, as they are used for VBA and label statistical comparisons
+
+#custom_predictor_string=nos2_vs_cvn
+## Hint: This is optional, and is how you can "name" the groups; i.e. nos2 is the name of group_1 and cvn is the name of group_2 in the example above.
+## Hint: This will default to control_vs_treated if not specified.
+
+channel_comma_list=dwi,fa,mask
+## Hint: At a minimum, this must at least include any contrasts used to drive registration.
+
+# Rigid (coarse) alignment options
+rigid_atlas_name=IITmean_RPI
+rigid_contrast=dwi
+
+# Non-linear (diffeomorphic) registration options
+mdt_contrast=fa
+mdt_creation_strategy=iterative
+## Hint: options for mdt_creation_strategy include 'iterative' and 'pairwise'
+
+mdt_iterations=6
+## Hint: You want at least 4 mdt_iterations, as this is the first fully-sampled level
+
+diffeo_transform_parameters=0.5,3,0.5
+diffeo_iterations=1000x1000x1000x60
+
+### Various optional parameters ###
+
+#optional_suffix=April2017analysis
+## Hint: optional_suffix will be appended to the main directory names, before -inputs/-work/-results.
+
+#vbm_reference_space=N51211
+#vbm_reference_space=IITmean_RPI
+vbm_reference_space=native
+## Hint: vbm_reference_space can be a specific runno, an arbitrary image, the name of an atlas, or 'native' (the first control runno).
+
+
+## Connectivity processing options
+
+#convert_labels_to_RAS=1
+## Hint: historically, the default working orientation is ALS, so convert_labels_to_RAS will turn final labels from ALS to RAS.
+
+do_connectivity=0
+## Hint: do_connectivity=1 will process the 4D diffusion nifti stack and bvals/bvecs to be used as input into another program such mrtrix or DSI studio
+##       Only DSI studio is fully supported right now for bval/bvec processing and formatting.
+
+#eddy_current_correction=1
+## Hint: When turned on eddy current correction was used during DTI tensor processing, the resulting rotations will be applied to the bvecs as well.
+
+
+## Affine registration options
+
+#affine_contrast=dwi
+#affine_target=N51231
+## Hint: affine_target will be the first control runno if not specified.  Future support will allow for the average of the rigidly aligned images to be the affine registration target.
+
+
+## Image orientation options 
+
+working_image_orientation=RPI
+## Hint: All work will be performed in working_image_orientation, which is ALS by default which is based on the current standard atlas orientation.
+## Hint: Support of arbitrary orientations is forthcoming, and will be RAS in the future.
+
+original_study_orientation=RPI
+## Hint: This describes the current orientation of all the incoming images, assuming they are uniformly oriented.
+## Hint: Support for handling outliers is forthcoming and will be in the form of:
+##       original_orientation_N51201=LPI (i.e. original_orientation_$runno=...)
+#original_orientation_R6524_y4=LPS
+
+
+#flip_x=1
+## Hint: flip_x=1 will rotate incoming images from PRS to ALS.
+## Hint: This will be deprecated shortly.
+
+
+#flip_z=0
+## Hint: flip_z=1 will rotate incoming images from ARI to ALS.
+## Hint: This will be deprecated shortly.
+
+## Hint: flip_x=1 and flip_z=1 will take images from PLI to ALS.
+
+
+
+
+# Label options
+create_labels=1
+label_atlas_name=IITmean_RPI
+## Hint: This is the name of the ANATOMY (i.e. images) upon which your source labels are overlaid
+
+#label_input_file=
+## Hint: If the name of your labels does not exactly match the label_atlas_name--perhaps due to multiple
+##       versions of labels for the same anatomicaly atlas
+
+
+label_space=pre_rigid
+## Hint: Multiple, comma-limited label_space options can be specified, and include:
+##       'pre_rigid': Native space of incoming images without any transforms applied
+##       'post_rigid' (or 'pre_affine'): Only the rigid linear transform will be applied to the images (no scaling or shearing)
+##       'post_affine': The rigid and affine linear transforms will be applied to the images (translation+rotation+scaling+shearing)
+##       'MDT': All images will be affinely and diffeomorphically mapped into the MDT label set
+##       'atlas': All images will be affinely and diffeomorphically mapped into the original atlas label set	
+  
+# Masking/skull-stripping options	
+skull_strip_contrast=dwi
+## Hint: our automated skull-stripping is optimized for dwi
+
+threshold_code=4
+do_mask=1
+port_atlas_mask=0
+## Hint: port_atlas_mask will align and scale the atlas mask to the results of the automated skull-stripping
+
+#pre_masked=0
+## Hint: pre_masked=1 will result in do_mask=0; this is if your input images are already masked.
+
+
+## VBA Options
+
+do_vba=0
+
+#vba_contrast_comma_list=dwi,fa,e1,jac
+## Hint: If not all contrasts should be analyzed with VBA, this comma-delimited list of image contrasts will specify which ones will be used with VBA. If this variable is not set, VBA will be performed on all available contrasts (except the nii4D).
+
+#smoothing_comma_list=1,2,3,0.1mm
+## Hint: This comma-delimited list specifies the smoothing radii you want to try before performing VBA; no specified units defaults to 'vox', while 'mm' can be specified if need be.
+
+#vba_analysis_software=surfstat
+## Hint: multiple comma-delimited options can be specified and include: surfstat (default),fsl,ANTsR, and spm.
+## Hint: fsl must be included if you want to do nonparametric testing
+
+#nonparametric_permutations=6000
+#fdr_masks=ROI:51:1051,label:1:2:3:4:5:6,fa:0.3:1
+## Hint: Full help on how to specify ROI/label-based and threshholded contrast-based fdr maps is forthcoming.
