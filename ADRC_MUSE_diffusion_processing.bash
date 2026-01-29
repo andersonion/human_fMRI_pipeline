@@ -15,8 +15,8 @@ for id in $(ls -d ${runno_prefix_letter}*);do
 	job_name=${id}_diffusion_processing;
 	sub_cmd="${sub_script} ${sbatch_dir} ${job_name} 0 0 ${cmd}";
 	test_output=${WORK}/human/diffusion_prep_MRtrix_${id}/${id}_sift_mu.txt;
-	if [[ ! -f ${test_output} ]];then
+	#if [[ ! -f ${test_output} ]];then
 		$sub_cmd;
-	fi
+	#fi
 done
 	
