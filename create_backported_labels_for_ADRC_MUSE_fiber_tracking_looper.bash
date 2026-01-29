@@ -11,7 +11,7 @@ sbatch_dir="${BIGGUS_DISKUS}/VBM_25${project}01_IITmean_RPI-results/papertrail/s
 for runno in $(ls $BIGGUS_DISKUS/VBM_25${project}01_IITmean_RPI-work/preprocess/*fa_masked.nii.gz | cut -d '/' -f10 | cut -d 'f' -f1);do
 	runno=${runno%_};
 	job_name=${runno}_backport_atlas_labels;
-	cmd="/mnt/newStor/paros/paros_WORK/${project}_connectomics/${project}_connectomics_code/create_backported_labels_for_${project}_fiber_tracking.bash ${runno}";
+	cmd="/home/apps/human_fMRI_pipeline/create_backported_labels_for_${project/Public/_MUSE}_fiber_tracking.bash ${runno}";
 	bash $GUNNIES/submit_slurm_cluster_job.bash ${sbatch_dir} ${job_name} 0 0 $cmd;
 done
    
